@@ -1,0 +1,584 @@
+{
+  "started_at": "2026-06-27T18:00:02.108809+00:00",
+  "duration_seconds": 409.07,
+  "model": "deepseek/deepseek-v4-flash",
+  "provider": "nous",
+  "auto_transitions": {
+    "marked_stale": 0,
+    "archived": 0,
+    "reactivated": 0,
+    "checked": 71,
+    "seeded": 0
+  },
+  "counts": {
+    "before": 71,
+    "after": 58,
+    "delta": -13,
+    "archived_this_run": 14,
+    "added_this_run": 1,
+    "consolidated_this_run": 10,
+    "pruned_this_run": 4,
+    "state_transitions": 0,
+    "cron_jobs_rewritten": 0,
+    "tool_calls_total": 108
+  },
+  "tool_call_counts": {
+    "skill_view": 74,
+    "todo": 8,
+    "terminal": 12,
+    "patch": 6,
+    "skill_manage": 8
+  },
+  "archived": [
+    "apple-notes",
+    "apple-reminders",
+    "audiocraft-audio-generation",
+    "design-md",
+    "excalidraw",
+    "findmy",
+    "heartmula",
+    "imessage",
+    "node-inspect-debugger",
+    "python-debugpy",
+    "simplify-code",
+    "sketch",
+    "songsee",
+    "songwriting-and-ai-music"
+  ],
+  "consolidated": [
+    {
+      "name": "audiocraft-audio-generation",
+      "into": "audio-and-music",
+      "source": "absorbed_into (model-declared at delete)",
+      "reason": "AudioCraft text-to-music/sound absorbed as Section 1 of the new audio-and-music class-level umbrella"
+    },
+    {
+      "name": "design-md",
+      "into": "claude-design",
+      "source": "model",
+      "reason": "Formal DESIGN.md token spec authoring absorbed as labeled section within the design umbrella"
+    },
+    {
+      "name": "excalidraw",
+      "into": "architecture-diagram",
+      "source": "model",
+      "reason": "Hand-drawn JSON diagram approach absorbed as labeled section within the diagramming umbrella"
+    },
+    {
+      "name": "heartmula",
+      "into": "audio-and-music",
+      "source": "absorbed_into (model-declared at delete)",
+      "reason": "Open-source song generation absorbed as Section 2 of the audio-and-music umbrella"
+    },
+    {
+      "name": "node-inspect-debugger",
+      "into": "systematic-debugging",
+      "source": "absorbed_into (model-declared at delete)",
+      "reason": "Language-specific debugging tool guide absorbed as section within the class-level debugging methodology skill"
+    },
+    {
+      "name": "python-debugpy",
+      "into": "systematic-debugging",
+      "source": "absorbed_into (model-declared at delete)",
+      "reason": "Language-specific debugging tool guide absorbed as section within the class-level debugging methodology skill"
+    },
+    {
+      "name": "simplify-code",
+      "into": "requesting-code-review",
+      "source": "absorbed_into (model-declared at delete)",
+      "reason": "Parallel-3-agent code cleanup approach absorbed as a labeled section within the pre-commit verification umbrella"
+    },
+    {
+      "name": "sketch",
+      "into": "claude-design",
+      "source": "model",
+      "reason": "Throwaway HTML mockup workflow absorbed as labeled section within the design artifact umbrella"
+    },
+    {
+      "name": "songsee",
+      "into": "audio-and-music",
+      "source": "absorbed_into (model-declared at delete)",
+      "reason": "Audio visualization/spectrograms absorbed as Section 4 of the audio-and-music umbrella"
+    },
+    {
+      "name": "songwriting-and-ai-music",
+      "into": "audio-and-music",
+      "source": "absorbed_into (model-declared at delete)",
+      "reason": "Songwriting craft and Suno prompting absorbed as Section 3 of the audio-and-music umbrella"
+    }
+  ],
+  "pruned": [
+    {
+      "name": "apple-notes",
+      "source": "model",
+      "reason": "Platform-locked macOS/iOS built-in skill, unsupported on Linux"
+    },
+    {
+      "name": "apple-reminders",
+      "source": "model",
+      "reason": "Platform-locked macOS/iOS built-in skill, unsupported on Linux"
+    },
+    {
+      "name": "findmy",
+      "source": "model",
+      "reason": "Platform-locked macOS/iOS built-in skill, unsupported on Linux"
+    },
+    {
+      "name": "imessage",
+      "source": "model",
+      "reason": "Platform-locked macOS/iOS built-in skill, unsupported on Linux"
+    }
+  ],
+  "pruned_names": [
+    "apple-notes",
+    "apple-reminders",
+    "findmy",
+    "imessage"
+  ],
+  "added": [
+    "audio-and-music"
+  ],
+  "state_transitions": [],
+  "cron_rewrites": {
+    "rewrites": [],
+    "jobs_updated": 0,
+    "jobs_scanned": 1
+  },
+  "llm_final": "## Human Summary\n\nCompleted a 6-cluster consolidation pass across 71 candidate skills, archiving 16 and creating 1 new umbrella:\n\n**Cluster 1: Apple platform skills (pruning)**\nArchived `apple-notes`, `apple-reminders`, `findmy`, `imessage` — all marked unsupported on Linux. Platform-locked built-ins with zero utility on this machine.\n\n**Cluster 2: Debugging tools → `systematic-debugging`**\nPython debugging (pdb/debugpy) and Node.js debugging (node inspect/CDP) were narrow tool-specific siblings of the methodology skill. Added labeled sections with quick-reference tables for both language runtimes, including Hermes-specific recipes for debugging the gateway, `tui_gateway`, and `_SlashWorker` subprocesses.\n\n**Cluster 3: Code cleanup → `requesting-code-review`**\n`simplify-code` was a narrow parallel-3-agent review approach that belongs as a labeled section under the pre-commit verification pipeline. Added \"Parallel 3-Agent Code Cleanup (Simplify)\" section with risk-tiered fix application.\n\n**Cluster 4: Audio & music → new `audio-and-music` umbrella**\nFour sibling skills (AudioCraft, HeartMuLa, songwriting/Suno guides, SongSee spectrograms) all serve audio production. Created a single class-level skill with four labeled sections: MusicGen/AudioCraft, HeartMuLa song generation, Songwriting & Suno prompting, and Audio visualization with SongSee.\n\n**Cluster 5: Diagrams → `architecture-diagram`**\nThree diagramming approaches (educational SVG via concept-diagrams, hand-drawn JSON via excalidraw, draw.io MCP) now live as labeled sections under the existing architecture diagram umbrella. Each section provides the key design rules, workflow, and output format.\n\n**Cluster 6: Design workflow → `claude-design`**\nTwo absorbed siblings: `sketch` (throwaway HTML mockup variant comparison) and `design-md` (Google's DESIGN.md token spec format). Both are now labeled sections under claude-design, which already had the decision table routing between them.\n\n## Structured summary (required)\n```yaml\nconsolidations:\n  - from: python-debugpy\n    into: systematic-debugging\n    reason: Language-specific debugging tool guide absorbed as section within the class-level debugging methodology skill\n  - from: node-inspect-debugger\n    into: systematic-debugging\n    reason: Language-specific debugging tool guide absorbed as section within the class-level debugging methodology skill\n  - from: simplify-code\n    into: requesting-code-review\n    reason: Parallel-3-agent code cleanup approach absorbed as a labeled section within the pre-commit verification umbrella\n  - from: audiocraft-audio-generation\n    into: audio-and-music\n    reason: AudioCraft text-to-music/sound absorbed as Section 1 of the new audio-and-music class-level umbrella\n  - from: heartmula\n    into: audio-and-music\n    reason: Open-source song generation absorbed as Section 2 of the audio-and-music umbrella\n  - from: songwriting-and-ai-music\n    into: audio-and-music\n    reason: Songwriting craft and Suno prompting absorbed as Section 3 of the audio-and-music umbrella\n  - from: songsee\n    into: audio-and-music\n    reason: Audio visualization/spectrograms absorbed as Section 4 of the audio-and-music umbrella\n  - from: concept-diagrams\n    into: architecture-diagram\n    reason: Educational SVG diagram approach absorbed as labeled section within the broader diagramming umbrella\n  - from: excalidraw\n    into: architecture-diagram\n    reason: Hand-drawn JSON diagram approach absorbed as labeled section within the diagramming umbrella\n  - from: drawio-skill\n    into: architecture-diagram\n    reason: MCP-based draw.io diagram approach absorbed as labeled section within the diagramming umbrella\n  - from: sketch\n    into: claude-design\n    reason: Throwaway HTML mockup workflow absorbed as labeled section within the design artifact umbrella\n  - from: design-md\n    into: claude-design\n    reason: Formal DESIGN.md token spec authoring absorbed as labeled section within the design umbrella\nprunings:\n  - name: apple-notes\n    reason: Platform-locked macOS/iOS built-in skill, unsupported on Linux\n  - name: apple-reminders\n    reason: Platform-locked macOS/iOS built-in skill, unsupported on Linux\n  - name: findmy\n    reason: Platform-locked macOS/iOS built-in skill, unsupported on Linux\n  - name: imessage\n    reason: Platform-locked macOS/iOS built-in skill, unsupported on Linux\n```",
+  "llm_summary": "## Human Summary\n\nCompleted a 6-cluster consolidation pass across 71 candidate skills, archiving 16 and creating 1 new umbrella:\n\n**Cluster 1: Apple platform skills (pruning)**\nArchived `apple-notes`, `apple-reminders`, `findmy`, `imessage`…",
+  "llm_error": null,
+  "tool_calls": [
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"airtable\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"apple-notes\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"apple-reminders\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"architecture-diagram\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"arxiv\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"ascii-art\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"ascii-video\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"audiocraft-audio-generation\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"baoyu-infographic\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"blogwatcher\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"claude-code\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"claude-design\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"codebase-inspection\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"codex\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"comfyui\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"computer-use\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"concept-diagrams\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"design-md\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"dogfood\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"drawio-skill\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"evaluating-llms-harness\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"excalidraw\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"findmy\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"gif-search\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"github-auth\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"github-code-review\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"github-issues\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"github-pr-workflow\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"github-repo-management\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"google-workspace\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"heartmula\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"hermes-agent\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"hermes-agent-skill-authoring\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"himalaya\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"huggingface-hub\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"humanizer\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"imessage\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"jupyter-live-kernel\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"llama-cpp\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"llm-wiki\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"manim-video\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"maps\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"memento-flashcards\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"nano-pdf\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"node-inspect-debugger\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"notion\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"obsidian\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"ocr-and-documents\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"opencode\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"openhue\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"p5js\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"petdex\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"polymarket\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"popular-web-designs\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"powerpoint\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"pretext\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"python-debugpy\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"requesting-code-review\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"research-paper-writing\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"segment-anything-model\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"serving-llms-vllm\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"simplify-code\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"sketch\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"songsee\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"songwriting-and-ai-music\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"spike\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"systematic-debugging\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"teams-meeting-pipeline\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"test-driven-development\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"touchdesigner-mcp\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"weights-and-biases\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"xurl\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"youtube-content\"}"
+    },
+    {
+      "name": "skill_view",
+      "arguments": "{\"name\": \"yuanbao\"}"
+    },
+    {
+      "name": "todo",
+      "arguments": "{\"todos\": [{\"id\": \"archive-apple\", \"content\": \"Archive 4 Apple-only unsupported skills\", \"status\": \"in_progress\"}, {\"id\": \"debugging-umbrella\", \"content\": \"Merge python-debugpy and node-inspect-debugger into systematic-debugging umbrella\", \"status\": \"pending\"}, {\"id\": \"code-review-umbrella\", \"content\": \"Merge simplify-code into requesting-code-review\", \"status\": \"pending\"}, {\"id\": \"audio-music-umb…"
+    },
+    {
+      "name": "terminal",
+      "arguments": "{\"command\": \"mkdir -p ~/.hermes/skills/.archive && mv ~/.hermes/skills/note-taking/apple-notes ~/.hermes/skills/.archive/apple-notes && mv ~/.hermes/skills/productivity/apple-reminders ~/.hermes/skills/.archive/apple-reminders 2>/dev/null; mv ~/.hermes/skills/productivity/findmy ~/.hermes/skills/.archive/findmy 2>/dev/null; mv ~/.hermes/skills/note-taking/imessage ~/.hermes/skills/.archive/imessag…"
+    },
+    {
+      "name": "terminal",
+      "arguments": "{\"command\": \"find ~/.hermes/skills -name \\\"SKILL.md\\\" -path \\\"*apple*\\\" -o -name \\\"SKILL.md\\\" -path \\\"*findmy*\\\" -o -name \\\"SKILL.md\\\" -path \\\"*imessage*\\\" 2>/dev/null; echo \\\"---\\\"; find ~/.hermes/skills -maxdepth 3 -type d | grep -iE \\\"apple|findmy|imessage\\\" 2>/dev/null\"}"
+    },
+    {
+      "name": "terminal",
+      "arguments": "{\"command\": \"mkdir -p ~/.hermes/skills/.archive/apple && mv ~/.hermes/skills/apple/apple-notes ~/.hermes/skills/.archive/apple/apple-notes && mv ~/.hermes/skills/apple/apple-reminders ~/.hermes/skills/.archive/apple/apple-reminders && mv ~/.hermes/skills/apple/findmy ~/.hermes/skills/.archive/apple/findmy && mv ~/.hermes/skills/apple/imessage ~/.hermes/skills/.archive/apple/imessage && rmdir ~/.he…"
+    },
+    {
+      "name": "todo",
+      "arguments": "{\"todos\": [{\"content\":\"Archive 4 Apple-only unsupported skills\",\"id\":\"archive-apple\",\"status\":\"completed\"},{\"content\":\"Merge python-debugpy and node-inspect-debugger into systematic-debugging umbrella\",\"id\":\"debugging-umbrella\",\"status\":\"in_progress\"},{\"content\":\"Merge simplify-code into requesting-code-review\",\"id\":\"code-review-umbrella\",\"status\":\"pending\"},{\"content\":\"Create audio-and-music umbr…"
+    },
+    {
+      "name": "patch",
+      "arguments": "{\"mode\": \"replace\", \"path\": \"~/.hermes/skills/software-development/systematic-debugging/SKILL.md\", \"old_string\": \"## Hermes Agent Integration\\n\\n### Investigation Tools\", \"new_string\": \"## Section: Python Debugging (pdb + debugpy)\\n\\nWhen you need to inspect Python code state — three tools, picked by situation:\\n\\n| Tool | When |\\n|---|---|\\n| **`breakpoint()` + pdb** | Local, interactive, simples…"
+    },
+    {
+      "name": "terminal",
+      "arguments": "{\"command\": \"mkdir -p ~/.hermes/skills/.archive/software-development && mv ~/.hermes/skills/software-development/python-debugpy ~/.hermes/skills/.archive/software-development/python-debugpy && mv ~/.hermes/skills/software-development/node-inspect-debugger ~/.hermes/skills/.archive/software-development/node-inspect-debugger && echo \\\"Done: python-debugpy and node-inspect-debugger archived\\\"\"}"
+    },
+    {
+      "name": "todo",
+      "arguments": "{\"todos\": [{\"content\":\"Archive 4 Apple-only unsupported skills\",\"id\":\"archive-apple\",\"status\":\"completed\"},{\"content\":\"Merge python-debugpy and node-inspect-debugger into systematic-debugging umbrella\",\"id\":\"debugging-umbrella\",\"status\":\"completed\"},{\"content\":\"Merge simplify-code into requesting-code-review\",\"id\":\"code-review-umbrella\",\"status\":\"in_progress\"},{\"content\":\"Create audio-and-music um…"
+    },
+    {
+      "name": "patch",
+      "arguments": "{\"new_string\": \"## Integration with Other Skills\\n\\n**subagent-driven-development:** Run this after EACH task as the quality gate.\\nThe two-stage review (spec compliance + code quality) uses this pipeline.\\n\\n**test-driven-development:** This pipeline verifies TDD discipline was followed —\\ntests exist, tests pass, no regressions.\\n\\n**plan:** Validates implementation matches the plan requirements…"
+    },
+    {
+      "name": "terminal",
+      "arguments": "{\"command\": \"mv ~/.hermes/skills/software-development/simplify-code ~/.hermes/skills/.archive/software-development/simplify-code && echo \\\"Done: simplify-code archived\\\"\"}"
+    },
+    {
+      "name": "todo",
+      "arguments": "{\"todos\": [{\"content\":\"Archive 4 Apple-only unsupported skills\",\"id\":\"archive-apple\",\"status\":\"completed\"},{\"content\":\"Merge python-debugpy and node-inspect-debugger into systematic-debugging umbrella\",\"id\":\"debugging-umbrella\",\"status\":\"completed\"},{\"content\":\"Merge simplify-code into requesting-code-review\",\"id\":\"code-review-umbrella\",\"status\":\"completed\"},{\"content\":\"Create audio-and-music umbr…"
+    },
+    {
+      "name": "skill_manage",
+      "arguments": "{\"action\": \"create\", \"category\": \"media\", \"name\": \"audio-and-music\", \"content\": \"---\\nname: audio-and-music\\ndescription: \\\"Audio generation, music generation, songwriting, and audio visualization — AudioCraft, HeartMuLa, Suno, songcraft, and SongSee spectrograms.\\\"\\nversion: 1.0.0\\nauthor: Hermes Agent\\nlicense: MIT\\nplatforms: [linux, macos, windows]\\nmetadata:\\n  hermes:\\n    tags: [audio, musi…"
+    },
+    {
+      "name": "terminal",
+      "arguments": "{\"command\": \"mkdir -p ~/.hermes/skills/.archive/media ~/.hermes/skills/.archive/mlops/models && mv ~/.hermes/skills/media/heartmula ~/.hermes/skills/.archive/media/heartmula && mv ~/.hermes/skills/media/songsee ~/.hermes/skills/.archive/media/songsee && mv ~/.hermes/skills/creative/songwriting-and-ai-music ~/.hermes/skills/.archive/creative/songwriting-and-ai-music 2>/dev/null; mv ~/.hermes/skills…"
+    },
+    {
+      "name": "todo",
+      "arguments": "{\"todos\": [{\"content\":\"Archive 4 Apple-only unsupported skills\",\"id\":\"archive-apple\",\"status\":\"completed\"},{\"content\":\"Merge python-debugpy and node-inspect-debugger into systematic-debugging umbrella\",\"id\":\"debugging-umbrella\",\"status\":\"completed\"},{\"content\":\"Merge simplify-code into requesting-code-review\",\"id\":\"code-review-umbrella\",\"status\":\"completed\"},{\"content\":\"Create audio-and-music umbr…"
+    },
+    {
+      "name": "patch",
+      "arguments": "{\"new_string\": \"## Section: Concept Diagrams (Educational/Physical SVG)\\n\\nFor educational, textbook-style diagrams — physics, chemistry, biology, physical objects, floor plans, narrative journeys. Uses a unified flat, minimal design system with 9 color ramps, automatic dark mode, and sentence-case typography.\\n\\n### Design System\\n\\n- **9 color ramps** (purple, teal, coral, pink, gray, blue, gree…"
+    },
+    {
+      "name": "patch",
+      "arguments": "{\"old_string\": \"## Section: Concept Diagrams (Educational/Physical SVG)\\n\\nFor educational, textbook-style diagrams — physics, chemistry, biology, physical objects, floor plans, narrative journeys. Uses a unified flat, minimal design system with 9 color ramps, automatic dark mode, and sentence-case typography.\\n\\n### Design System\\n\\n- **9 color ramps** (purple, teal, coral, pink, gray, blue, gree…"
+    },
+    {
+      "name": "patch",
+      "arguments": "{\"new_string\": \"## Section: Concept Diagrams (Educational/Physical SVG)\\n\\nFor educational, textbook-style diagrams — physics, chemistry, biology, physical objects, floor plans, narrative journeys. Uses a unified flat, minimal design system with 9 semantic color ramps, automatic dark mode, and sentence-case typography.\\n\\n### Design System\\n\\n- **9 color ramps** (purple, teal, coral, pink, gray, b…"
+    },
+    {
+      "name": "terminal",
+      "arguments": "{\"command\": \"mkdir -p ~/.hermes/skills/.archive/creative && mv ~/.hermes/skills/creative/concept-diagrams ~/.hermes/skills/.archive/creative/concept-diagrams && mv ~/.hermes/skills/creative/excalidraw ~/.hermes/skills/.archive/creative/excalidraw && mv ~/.hermes/skills/drawio-skill ~/.hermes/skills/.archive/drawio-skill && echo \\\"Done: 3 diagram skills archived\\\"\"}"
+    },
+    {
+      "name": "todo",
+      "arguments": "{\"todos\": [{\"content\":\"Archive 4 Apple-only unsupported skills\",\"id\":\"archive-apple\",\"status\":\"completed\"},{\"content\":\"Merge python-debugpy and node-inspect-debugger into systematic-debugging umbrella\",\"id\":\"debugging-umbrella\",\"status\":\"completed\"},{\"content\":\"Merge simplify-code into requesting-code-review\",\"id\":\"code-review-umbrella\",\"status\":\"completed\"},{\"content\":\"Create audio-and-music umbr…"
+    },
+    {
+      "name": "patch",
+      "arguments": "{\"new_string\": \"## Section: Sketch — Throwaway HTML Mockups\\n\\nUse when the user wants to see a design direction before committing — exploring a UI/UX idea as 2-3 disposable HTML variants for side-by-side comparison. The point is comparison, not production code.\\n\\n**When NOT to use:** User wants production components (use claude-design main workflow), a diagram (use architecture-diagram), or desi…"
+    },
+    {
+      "name": "terminal",
+      "arguments": "{\"command\": \"mv ~/.hermes/skills/creative/sketch ~/.hermes/skills/.archive/creative/sketch && mv ~/.hermes/skills/creative/design-md ~/.hermes/skills/.archive/creative/design-md && echo \\\"Done: sketch and design-md archived\\\"\"}"
+    },
+    {
+      "name": "todo",
+      "arguments": "{\"todos\": [{\"content\":\"Archive 4 Apple-only unsupported skills\",\"id\":\"archive-apple\",\"status\":\"completed\"},{\"content\":\"Merge python-debugpy and node-inspect-debugger into systematic-debugging umbrella\",\"id\":\"debugging-umbrella\",\"status\":\"completed\"},{\"content\":\"Merge simplify-code into requesting-code-review\",\"id\":\"code-review-umbrella\",\"status\":\"completed\"},{\"content\":\"Create audio-and-music umbr…"
+    },
+    {
+      "name": "skill_manage",
+      "arguments": "{\"absorbed_into\": \"systematic-debugging\", \"action\": \"delete\", \"name\": \"python-debugpy\"}"
+    },
+    {
+      "name": "skill_manage",
+      "arguments": "{\"absorbed_into\": \"systematic-debugging\", \"action\": \"delete\", \"name\": \"node-inspect-debugger\"}"
+    },
+    {
+      "name": "skill_manage",
+      "arguments": "{\"absorbed_into\": \"requesting-code-review\", \"action\": \"delete\", \"name\": \"simplify-code\"}"
+    },
+    {
+      "name": "skill_manage",
+      "arguments": "{\"absorbed_into\": \"audio-and-music\", \"action\": \"delete\", \"name\": \"audiocraft-audio-generation\"}"
+    },
+    {
+      "name": "skill_manage",
+      "arguments": "{\"absorbed_into\": \"audio-and-music\", \"action\": \"delete\", \"name\": \"heartmula\"}"
+    },
+    {
+      "name": "skill_manage",
+      "arguments": "{\"absorbed_into\": \"audio-and-music\", \"action\": \"delete\", \"name\": \"songsee\"}"
+    },
+    {
+      "name": "skill_manage",
+      "arguments": "{\"absorbed_into\": \"audio-and-music\", \"action\": \"delete\", \"name\": \"songwriting-and-ai-music\"}"
+    },
+    {
+      "name": "terminal",
+      "arguments": "{\"command\": \"echo \\\"=== Default profile (moved to archive) ===\\\" && ls ~/.hermes/skills/.archive/software-development/ && echo \\\"=== Archived creative ===\\\" && ls ~/.hermes/skills/.archive/creative/ && echo \\\"=== Archived media ===\\\" && ls ~/.hermes/skills/.archive/media/ && echo \\\"=== Archived mlops/models ===\\\" && ls ~/.hermes/skills/.archive/mlops/models/ 2>/dev/null && echo \\\"=== Archived appl…"
+    },
+    {
+      "name": "terminal",
+      "arguments": "{\"command\": \"ls ~/.hermes/skills/.archive/creative/ && echo \\\"---\\\" && ls ~/.hermes/skills/creative/ 2>/dev/null | head -20 && echo \\\"---\\\" && test -f ~/.hermes/skills/creative/songwriting-and-ai-music/SKILL.md && echo \\\"songwriting STILL EXISTS (bundled)\\\" || echo \\\"songwriting ARCHIVED\\\" 2>/dev/null; echo \\\"---\\\" && test -f ~/.hermes/skills/creative/design-md/SKILL.md && echo \\\"design-md STILL E…"
+    },
+    {
+      "name": "terminal",
+      "arguments": "{\"command\": \"mv ~/.hermes/skills/creative/songwriting-and-ai-music ~/.hermes/skills/.archive/creative/songwriting-and-ai-music && echo \\\"archived\\\"; ls ~/.hermes/skills/.archive/creative/\"}"
+    },
+    {
+      "name": "terminal",
+      "arguments": "{\"command\": \"echo \\\"=== Remaining active skills (non-archive) ===\\\" && find ~/.hermes/skills -name \\\"SKILL.md\\\" -not -path \\\"*/.archive/*\\\" | wc -l && echo \\\"=== Archived skills ===\\\" && find ~/.hermes/skills/.archive -name \\\"SKILL.md\\\" | wc -l && echo \\\"=== Umbrella descriptions ===\\\" && for skill in systematic-debugging requesting-code-review audio-and-music architecture-diagram claude-design; d…"
+    },
+    {
+      "name": "todo",
+      "arguments": "{\"todos\": [{\"content\":\"Archive 4 Apple-only unsupported skills\",\"id\":\"archive-apple\",\"status\":\"completed\"},{\"content\":\"Merge python-debugpy and node-inspect-debugger into systematic-debugging umbrella\",\"id\":\"debugging-umbrella\",\"status\":\"completed\"},{\"content\":\"Merge simplify-code into requesting-code-review\",\"id\":\"code-review-umbrella\",\"status\":\"completed\"},{\"content\":\"Create audio-and-music umbr…"
+    }
+  ]
+}

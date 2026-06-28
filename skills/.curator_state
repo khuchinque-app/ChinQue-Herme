@@ -1,0 +1,9 @@
+{
+  "last_report_path": "/home/khuchinque/.hermes/logs/curator/20260627-180002",
+  "last_run_at": "2026-06-27T18:00:02.108809+00:00",
+  "last_run_duration_seconds": 409.069767,
+  "last_run_summary": "auto: no changes; llm: ## Human Summary\n\nCompleted a 6-cluster consolidation pass across 71 candidate skills, archiving 16 and creating 1 new umbrella:\n\n**Cluster 1: Apple platform skills (pruning)**\nArchived `apple-notes`, `apple-reminders`, `findmy`, `imessage`…\narchived 14 skill(s):\n  • audiocraft-audio-generation → audio-and-music\n  • design-md → claude-design\n  • excalidraw → architecture-diagram\n  • heartmula → audio-and-music\n  • node-inspect-debugger → systematic-debugging\n  • python-debugpy → systematic-debugging\n  • simplify-code → requesting-code-review\n  • sketch → claude-design\n  • songsee → audio-and-music\n  • songwriting-and-ai-music → audio-and-music\n  … and 4 more\nfull report: hermes curator status\nkeep an umbrella stable: hermes curator pin architecture-diagram",
+  "last_run_summary_shown_at": "2026-06-27T18:00:02.108809+00:00",
+  "paused": false,
+  "run_count": 2
+}

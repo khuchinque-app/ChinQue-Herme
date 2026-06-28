@@ -1,0 +1,8 @@
+2026-06-24 18:36:22,280 INFO hermes_cli.web_server: Mounted plugin API routes: /api/plugins/hermes-achievements/
+2026-06-24 18:36:22,429 INFO hermes_cli.web_server: Mounted plugin API routes: /api/plugins/kanban/
+2026-06-24 20:58:16,023 INFO hermes_cli.web_server: Mounted plugin API routes: /api/plugins/hermes-achievements/
+2026-06-24 20:58:16,173 INFO hermes_cli.web_server: Mounted plugin API routes: /api/plugins/kanban/
+2026-06-27 19:49:56,030 INFO hermes_cli.web_server: Mounted plugin API routes: /api/plugins/hermes-achievements/
+2026-06-27 19:49:56,105 INFO hermes_cli.web_server: Mounted plugin API routes: /api/plugins/kanban/
+2026-06-27 19:55:01,928 INFO hermes_cli.web_server: Mounted plugin API routes: /api/plugins/hermes-achievements/
+2026-06-27 19:55:02,091 INFO hermes_cli.web_server: Mounted plugin API routes: /api/plugins/kanban/

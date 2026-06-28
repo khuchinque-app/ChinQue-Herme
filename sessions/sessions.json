@@ -1,0 +1,40 @@
+{
+  "_README": "Gateway routing index ONLY: maps messaging session keys (agent:main:<platform>:...) to active session IDs. This is NOT the session list. ALL sessions (CLI, TUI, and gateway) live in ~/.hermes/state.db and are shown by `hermes sessions list` and `/sessions`. Seeing only gateway entries here is expected and does not mean CLI sessions are missing.",
+  "agent:main:telegram:dm:7281341176": {
+    "session_key": "agent:main:telegram:dm:7281341176",
+    "session_id": "20260623_085701_e78efc88",
+    "created_at": "2026-06-23T08:57:01.983792",
+    "updated_at": "2026-06-27T19:52:26.076318",
+    "display_name": "ChinQue",
+    "platform": "telegram",
+    "chat_type": "dm",
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "total_tokens": 0,
+    "last_prompt_tokens": 27007,
+    "estimated_cost_usd": 0.0,
+    "cost_status": "unknown",
+    "expiry_finalized": false,
+    "suspended": false,
+    "resume_pending": false,
+    "resume_reason": null,
+    "last_resume_marked_at": null,
+    "is_fresh_reset": false,
+    "was_auto_reset": false,
+    "auto_reset_reason": null,
+    "reset_had_activity": false,
+    "origin": {
+      "platform": "telegram",
+      "chat_id": "7281341176",
+      "chat_name": "ChinQue",
+      "chat_type": "dm",
+      "user_id": "7281341176",
+      "user_name": "ChinQue",
+      "thread_id": null,
+      "chat_topic": null,
+      "message_id": "23"
+    }
+  }
+}

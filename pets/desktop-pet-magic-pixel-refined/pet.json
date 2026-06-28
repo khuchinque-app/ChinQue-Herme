@@ -1,0 +1,79 @@
+{
+  "id": "desktop_pet_magic_pixel_refined",
+  "displayName": "Magic Desktop Pet Pixel Refined",
+  "description": "A refined pixel-art boy wizard desktop pet with broom-riding movement states.",
+  "spritesheetPath": "spritesheet.webp",
+  "metadataPath": "metadata.json",
+  "animation": {
+    "schema": "hatch-pet-v2",
+    "cellWidth": 192,
+    "cellHeight": 208,
+    "columns": 8,
+    "rows": 9,
+    "states": {
+      "idle": {
+        "frames": 6,
+        "row": 0,
+        "loop": true,
+        "frameDuration": 150,
+        "next": "idle"
+      },
+      "running-right": {
+        "frames": 8,
+        "row": 1,
+        "loop": true,
+        "frameDuration": 100,
+        "next": "idle"
+      },
+      "running-left": {
+        "frames": 8,
+        "row": 2,
+        "loop": true,
+        "frameDuration": 100,
+        "next": "idle"
+      },
+      "waving": {
+        "frames": 4,
+        "row": 3,
+        "loop": false,
+        "frameDuration": 150,
+        "next": "idle"
+      },
+      "jumping": {
+        "frames": 5,
+        "row": 4,
+        "loop": false,
+        "frameDuration": 150,
+        "next": "idle"
+      },
+      "failed": {
+        "frames": 8,
+        "row": 5,
+        "loop": false,
+        "frameDuration": 150,
+        "next": "idle"
+      },
+      "waiting": {
+        "frames": 6,
+        "row": 6,
+        "loop": true,
+        "frameDuration": 150,
+        "next": "idle"
+      },
+      "running": {
+        "frames": 6,
+        "row": 7,
+        "loop": true,
+        "frameDuration": 100,
+        "next": "idle"
+      },
+      "review": {
+        "frames": 6,
+        "row": 8,
+        "loop": true,
+        "frameDuration": 150,
+        "next": "idle"
+      }
+    }
+  }
+}

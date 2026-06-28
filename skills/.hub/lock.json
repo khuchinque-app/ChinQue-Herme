@@ -1,0 +1,536 @@
+{
+  "version": 1,
+  "installed": {
+    "drawio-skill": {
+      "source": "clawhub",
+      "identifier": "drawio-skill",
+      "trust_level": "community",
+      "scan_verdict": "safe",
+      "content_hash": "sha256:619306550f13f109",
+      "install_path": "drawio-skill",
+      "files": [
+        "agents/openai.yaml",
+        "README.md",
+        "skill-card.md",
+        "SKILL.md",
+        "_meta.json"
+      ],
+      "metadata": {},
+      "installed_at": "2026-06-23T07:07:44.855887+00:00",
+      "updated_at": "2026-06-23T07:07:44.855901+00:00"
+    },
+    "duckduckgo-search": {
+      "source": "official",
+      "identifier": "official/research/duckduckgo-search",
+      "trust_level": "builtin",
+      "scan_verdict": "safe",
+      "content_hash": "sha256:25ae5cbdbb2bff0b",
+      "install_path": "research/duckduckgo-search",
+      "files": [
+        "SKILL.md",
+        "scripts/duckduckgo.sh"
+      ],
+      "metadata": {},
+      "installed_at": "2026-06-23T08:21:04.614521+00:00",
+      "updated_at": "2026-06-23T08:21:04.614527+00:00"
+    },
+    "watchers": {
+      "source": "official",
+      "identifier": "official/devops/watchers",
+      "trust_level": "builtin",
+      "scan_verdict": "dangerous",
+      "content_hash": "sha256:bb92ebdc4f387bf1",
+      "install_path": "devops/watchers",
+      "files": [
+        "SKILL.md",
+        "scripts/watch_github.py",
+        "scripts/watch_rss.py",
+        "scripts/_watermark.py",
+        "scripts/watch_http_json.py"
+      ],
+      "metadata": {},
+      "installed_at": "2026-06-23T08:21:21.968795+00:00",
+      "updated_at": "2026-06-23T08:21:21.968802+00:00"
+    },
+    "pinggy-tunnel": {
+      "source": "official",
+      "identifier": "official/devops/pinggy-tunnel",
+      "trust_level": "builtin",
+      "scan_verdict": "dangerous",
+      "content_hash": "sha256:e3068d936a7b5b07",
+      "install_path": "devops/pinggy-tunnel",
+      "files": [
+        "SKILL.md"
+      ],
+      "metadata": {},
+      "installed_at": "2026-06-23T08:21:27.363146+00:00",
+      "updated_at": "2026-06-23T08:21:27.363152+00:00"
+    },
+    "scrapling": {
+      "source": "official",
+      "identifier": "official/research/scrapling",
+      "trust_level": "builtin",
+      "scan_verdict": "safe",
+      "content_hash": "sha256:d360d73e74744838",
+      "install_path": "research/scrapling",
+      "files": [
+        "SKILL.md"
+      ],
+      "metadata": {},
+      "installed_at": "2026-06-23T08:21:30.981121+00:00",
+      "updated_at": "2026-06-23T08:21:30.981128+00:00"
+    },
+    "here-now": {
+      "source": "official",
+      "identifier": "official/productivity/here-now",
+      "trust_level": "builtin",
+      "scan_verdict": "dangerous",
+      "content_hash": "sha256:6370b5bff0d63798",
+      "install_path": "productivity/here-now",
+      "files": [
+        "SKILL.md",
+        "scripts/publish.sh",
+        "scripts/drive.sh"
+      ],
+      "metadata": {},
+      "installed_at": "2026-06-23T08:21:51.913634+00:00",
+      "updated_at": "2026-06-23T08:21:51.913642+00:00"
+    },
+    "concept-diagrams": {
+      "source": "official",
+      "identifier": "official/creative/concept-diagrams",
+      "trust_level": "builtin",
+      "scan_verdict": "caution",
+      "content_hash": "sha256:b437e78965a6ab9c",
+      "install_path": "creative/concept-diagrams",
+      "files": [
+        "SKILL.md",
+        "examples/commercial-aircraft-structure.md",
+        "examples/smartphone-layer-anatomy.md",
+        "examples/ml-benchmark-grouped-bar-chart.md",
+        "examples/cpu-ooo-microarchitecture.md",
+        "examples/place-order-uml-sequence.md",
+        "examples/electricity-grid-flow.md",
+        "examples/smart-city-infrastructure.md",
+        "examples/autonomous-llm-research-agent-flow.md",
+        "examples/automated-password-reset-flow.md",
+        "examples/hospital-emergency-department-flow.md",
+        "examples/apartment-floor-plan-conversion.md",
+        "examples/banana-journey-tree-to-smoothie.md",
+        "examples/wind-turbine-structure.md",
+        "examples/sn2-reaction-mechanism.md",
+        "examples/feature-film-production-pipeline.md",
+        "references/infrastructure-patterns.md",
+        "references/dashboard-patterns.md",
+        "references/physical-shape-cookbook.md",
+        "templates/template.html"
+      ],
+      "metadata": {},
+      "installed_at": "2026-06-23T08:21:56.811468+00:00",
+      "updated_at": "2026-06-23T08:21:56.811477+00:00"
+    },
+    "code-wiki": {
+      "source": "official",
+      "identifier": "official/software-development/code-wiki",
+      "trust_level": "builtin",
+      "scan_verdict": "safe",
+      "content_hash": "sha256:d4801ac0398deaf4",
+      "install_path": "software-development/code-wiki",
+      "files": [
+        "SKILL.md",
+        "templates/module.md",
+        "templates/architecture.md",
+        "templates/getting-started.md",
+        "templates/README.md"
+      ],
+      "metadata": {},
+      "installed_at": "2026-06-23T08:22:00.520470+00:00",
+      "updated_at": "2026-06-23T08:22:00.520475+00:00"
+    },
+    "memento-flashcards": {
+      "source": "official",
+      "identifier": "official/productivity/memento-flashcards",
+      "trust_level": "builtin",
+      "scan_verdict": "safe",
+      "content_hash": "sha256:ec72f6a0a0ac6d5d",
+      "install_path": "productivity/memento-flashcards",
+      "files": [
+        "SKILL.md",
+        "scripts/memento_cards.py",
+        "scripts/youtube_quiz.py"
+      ],
+      "metadata": {},
+      "installed_at": "2026-06-23T08:22:07.349255+00:00",
+      "updated_at": "2026-06-23T08:22:07.349262+00:00"
+    },
+    "nemo-curator": {
+      "source": "official",
+      "identifier": "official/mlops/nemo-curator",
+      "trust_level": "builtin",
+      "scan_verdict": "safe",
+      "content_hash": "sha256:fcd33b9f33053338",
+      "install_path": "mlops/nemo-curator",
+      "files": [
+        "SKILL.md",
+        "references/deduplication.md",
+        "references/filtering.md"
+      ],
+      "metadata": {},
+      "installed_at": "2026-06-23T08:49:36.618662+00:00",
+      "updated_at": "2026-06-23T08:49:36.618680+00:00"
+    },
+    "hyperframes": {
+      "source": "official",
+      "identifier": "official/creative/hyperframes",
+      "trust_level": "builtin",
+      "scan_verdict": "caution",
+      "content_hash": "sha256:ea70a61ac96bc81a",
+      "install_path": "creative/hyperframes",
+      "files": [
+        "SKILL.md",
+        "scripts/setup.sh",
+        "references/gsap.md",
+        "references/composition.md",
+        "references/cli.md",
+        "references/website-to-video.md",
+        "references/troubleshooting.md",
+        "references/features.md"
+      ],
+      "metadata": {},
+      "installed_at": "2026-06-23T08:49:36.741339+00:00",
+      "updated_at": "2026-06-23T08:49:36.741349+00:00"
+    },
+    "kanban-video-orchestrator": {
+      "source": "official",
+      "identifier": "official/creative/kanban-video-orchestrator",
+      "trust_level": "builtin",
+      "scan_verdict": "safe",
+      "content_hash": "sha256:a918c3239ea30681",
+      "install_path": "creative/kanban-video-orchestrator",
+      "files": [
+        "SKILL.md",
+        "scripts/monitor.py",
+        "scripts/bootstrap_pipeline.py",
+        "assets/brief.md.tmpl",
+        "assets/soul.md.tmpl",
+        "assets/setup.sh.tmpl",
+        "references/examples.md",
+        "references/intake.md",
+        "references/tool-matrix.md",
+        "references/monitoring.md",
+        "references/kanban-setup.md",
+        "references/role-archetypes.md"
+      ],
+      "metadata": {},
+      "installed_at": "2026-06-23T08:49:37.238577+00:00",
+      "updated_at": "2026-06-23T08:49:37.238583+00:00"
+    },
+    "docker-management": {
+      "source": "official",
+      "identifier": "official/devops/docker-management",
+      "trust_level": "builtin",
+      "scan_verdict": "dangerous",
+      "content_hash": "sha256:b3b0513a7dc104fa",
+      "install_path": "devops/docker-management",
+      "files": [
+        "SKILL.md"
+      ],
+      "metadata": {},
+      "installed_at": "2026-06-23T08:49:58.256348+00:00",
+      "updated_at": "2026-06-23T08:49:58.256353+00:00"
+    },
+    "openclaw-migration": {
+      "source": "official",
+      "identifier": "official/migration/openclaw-migration",
+      "trust_level": "builtin",
+      "scan_verdict": "dangerous",
+      "content_hash": "sha256:f714b94fa4ba316f",
+      "install_path": "migration/openclaw-migration",
+      "files": [
+        "SKILL.md",
+        "scripts/openclaw_to_hermes.py"
+      ],
+      "metadata": {},
+      "installed_at": "2026-06-23T08:49:59.350430+00:00",
+      "updated_at": "2026-06-23T08:49:59.350437+00:00"
+    },
+    "meme-generation": {
+      "source": "official",
+      "identifier": "official/creative/meme-generation",
+      "trust_level": "builtin",
+      "scan_verdict": "safe",
+      "content_hash": "sha256:4ca5f237d2e40ef7",
+      "install_path": "creative/meme-generation",
+      "files": [
+        "SKILL.md",
+        "EXAMPLES.md",
+        "scripts/generate_meme.py",
+        "scripts/templates.json"
+      ],
+      "metadata": {},
+      "installed_at": "2026-06-23T08:50:01.672633+00:00",
+      "updated_at": "2026-06-23T08:50:01.672643+00:00"
+    },
+    "cli": {
+      "source": "official",
+      "identifier": "official/devops/cli",
+      "trust_level": "builtin",
+      "scan_verdict": "dangerous",
+      "content_hash": "sha256:0cbb7ccd3dc2cc40",
+      "install_path": "devops/cli",
+      "files": [
+        "SKILL.md",
+        "references/app-discovery.md",
+        "references/authentication.md",
+        "references/running-apps.md",
+        "references/cli-reference.md"
+      ],
+      "metadata": {},
+      "installed_at": "2026-06-23T08:50:42.299203+00:00",
+      "updated_at": "2026-06-23T08:50:42.299209+00:00"
+    },
+    "honcho": {
+      "source": "official",
+      "identifier": "official/autonomous-ai-agents/honcho",
+      "trust_level": "builtin",
+      "scan_verdict": "dangerous",
+      "content_hash": "sha256:3092e450107aab14",
+      "install_path": "autonomous-ai-agents/honcho",
+      "files": [
+        "SKILL.md"
+      ],
+      "metadata": {},
+      "installed_at": "2026-06-27T14:22:38.743583+00:00",
+      "updated_at": "2026-06-27T14:22:38.743598+00:00"
+    },
+    "darwinian-evolver": {
+      "source": "official",
+      "identifier": "official/research/darwinian-evolver",
+      "trust_level": "builtin",
+      "scan_verdict": "dangerous",
+      "content_hash": "sha256:160200eaff8fa9fd",
+      "install_path": "research/darwinian-evolver",
+      "files": [
+        "SKILL.md",
+        "scripts/show_snapshot.py",
+        "scripts/parrot_openrouter.py",
+        "templates/custom_problem_template.py"
+      ],
+      "metadata": {},
+      "installed_at": "2026-06-27T14:22:41.680543+00:00",
+      "updated_at": "2026-06-27T14:22:41.680562+00:00"
+    },
+    "formula-ocr": {
+      "source": "clawhub",
+      "identifier": "formula-ocr",
+      "trust_level": "community",
+      "scan_verdict": "safe",
+      "content_hash": "sha256:00c1a3aa84b2ab7b",
+      "install_path": "formula-ocr",
+      "files": [
+        "skill-card.md",
+        "SKILL.md",
+        "_meta.json"
+      ],
+      "metadata": {},
+      "installed_at": "2026-06-27T19:23:51.070801+00:00",
+      "updated_at": "2026-06-27T19:23:51.070808+00:00"
+    },
+    "academic-formula-converter": {
+      "source": "clawhub",
+      "identifier": "academic-formula-converter",
+      "trust_level": "community",
+      "scan_verdict": "safe",
+      "content_hash": "sha256:08f3ef3b47db329c",
+      "install_path": "academic-formula-converter",
+      "files": [
+        "formula_converter.py",
+        "skill-card.md",
+        "SKILL.md",
+        "_meta.json"
+      ],
+      "metadata": {},
+      "installed_at": "2026-06-27T19:24:00.228277+00:00",
+      "updated_at": "2026-06-27T19:24:00.228285+00:00"
+    },
+    "excel-formula": {
+      "source": "clawhub",
+      "identifier": "excel-formula",
+      "trust_level": "community",
+      "scan_verdict": "safe",
+      "content_hash": "sha256:7b217703bbf876a6",
+      "install_path": "excel-formula",
+      "files": [
+        "scripts/excel.sh",
+        "scripts/script.sh",
+        "skill-card.md",
+        "SKILL.md",
+        "tips.md",
+        "_meta.json"
+      ],
+      "metadata": {},
+      "installed_at": "2026-06-27T19:24:08.254204+00:00",
+      "updated_at": "2026-06-27T19:24:08.254214+00:00"
+    },
+    "kelly-formula-crypto": {
+      "source": "clawhub",
+      "identifier": "kelly-formula-crypto",
+      "trust_level": "community",
+      "scan_verdict": "safe",
+      "content_hash": "sha256:d700e145086f8072",
+      "install_path": "kelly-formula-crypto",
+      "files": [
+        "README.md",
+        "requirements.txt",
+        "scripts/kelly_calculator.py",
+        "skill-card.md",
+        "SKILL.md",
+        "_meta.json"
+      ],
+      "metadata": {},
+      "installed_at": "2026-06-27T19:24:17.179715+00:00",
+      "updated_at": "2026-06-27T19:24:17.179724+00:00"
+    },
+    "extract-formulas-from-pdf": {
+      "source": "clawhub",
+      "identifier": "extract-formulas-from-pdf",
+      "trust_level": "community",
+      "scan_verdict": "safe",
+      "content_hash": "sha256:d1cdf7ad4f844f3b",
+      "install_path": "extract-formulas-from-pdf",
+      "files": [
+        "skill-card.md",
+        "SKILL.md",
+        "_meta.json"
+      ],
+      "metadata": {},
+      "installed_at": "2026-06-27T19:24:21.387097+00:00",
+      "updated_at": "2026-06-27T19:24:21.387104+00:00"
+    },
+    "formula-decoder": {
+      "source": "clawhub",
+      "identifier": "formula-decoder",
+      "trust_level": "community",
+      "scan_verdict": "safe",
+      "content_hash": "sha256:8d509a7b3d5ee804",
+      "install_path": "formula-decoder",
+      "files": [
+        "skill-card.md",
+        "skill.json",
+        "SKILL.md",
+        "_meta.json"
+      ],
+      "metadata": {},
+      "installed_at": "2026-06-27T19:24:36.516530+00:00",
+      "updated_at": "2026-06-27T19:24:36.516537+00:00"
+    },
+    "spreadsheet-formula-helper": {
+      "source": "skills.sh",
+      "identifier": "skills-sh/composiohq/awesome-codex-skills/spreadsheet-formula-helper",
+      "trust_level": "community",
+      "scan_verdict": "safe",
+      "content_hash": "sha256:4f58cf10e02b13c2",
+      "install_path": "spreadsheet-formula-helper",
+      "files": [
+        "SKILL.md"
+      ],
+      "metadata": {},
+      "installed_at": "2026-06-27T19:29:36.471897+00:00",
+      "updated_at": "2026-06-27T19:29:36.471905+00:00"
+    },
+    "excel-xlsx-formula-cleanup-helper": {
+      "source": "clawhub",
+      "identifier": "excel-xlsx-formula-cleanup-helper",
+      "trust_level": "community",
+      "scan_verdict": "safe",
+      "content_hash": "sha256:64829a2c33c05bbb",
+      "install_path": "excel-xlsx-formula-cleanup-helper",
+      "files": [
+        "agents/openai.yaml",
+        "README.md",
+        "README.zh-CN.md",
+        "references/requirement-plan.md",
+        "skill-card.md",
+        "SKILL.md",
+        "SKILL.zh-CN.md",
+        "_meta.json"
+      ],
+      "metadata": {},
+      "installed_at": "2026-06-27T19:30:03.766879+00:00",
+      "updated_at": "2026-06-27T19:30:03.766889+00:00"
+    },
+    "sparql-query": {
+      "source": "browse-sh",
+      "identifier": "browse-sh/wikidata.org/sparql-query-wwu2pk",
+      "trust_level": "community",
+      "scan_verdict": "safe",
+      "content_hash": "sha256:be674306fba5fb81",
+      "install_path": "sparql-query",
+      "files": [
+        "SKILL.md"
+      ],
+      "metadata": {
+        "slug": "wikidata.org/sparql-query-wwu2pk",
+        "hostname": "wikidata.org",
+        "source_url": "https://github.com/browserbase/browse.sh/blob/main/skills/wikidata.org/sparql-query-wwu2pk/SKILL.md",
+        "skill_md_url": "https://gh0lfhlmyzhg6tww.public.blob.vercel-storage.com/skills/wikidata.org/sparql-query-wwu2pk/SKILL.md"
+      },
+      "installed_at": "2026-06-27T19:39:30.868941+00:00",
+      "updated_at": "2026-06-27T19:39:30.868951+00:00"
+    },
+    "trending-world-news": {
+      "source": "browse-sh",
+      "identifier": "browse-sh/wikipedia.org/find-the-trending-world-news-for-today-hfqs9b",
+      "trust_level": "community",
+      "scan_verdict": "safe",
+      "content_hash": "sha256:e511023083a3f5c5",
+      "install_path": "trending-world-news",
+      "files": [
+        "SKILL.md"
+      ],
+      "metadata": {
+        "slug": "wikipedia.org/find-the-trending-world-news-for-today-hfqs9b",
+        "hostname": "wikipedia.org",
+        "source_url": "https://github.com/browserbase/browse.sh/blob/main/skills/wikipedia.org/find-the-trending-world-news-for-today-hfqs9b/SKILL.md",
+        "skill_md_url": "https://gh0lfhlmyzhg6tww.public.blob.vercel-storage.com/skills/wikipedia.org/find-the-trending-world-news-for-today-hfqs9b/SKILL.md"
+      },
+      "installed_at": "2026-06-27T19:40:15.359048+00:00",
+      "updated_at": "2026-06-27T19:40:15.359056+00:00"
+    },
+    "get-article": {
+      "source": "browse-sh",
+      "identifier": "browse-sh/wikipedia.org/get-article-4q40tl",
+      "trust_level": "community",
+      "scan_verdict": "safe",
+      "content_hash": "sha256:6c8663e6ee695c15",
+      "install_path": "get-article",
+      "files": [
+        "SKILL.md"
+      ],
+      "metadata": {
+        "slug": "wikipedia.org/get-article-4q40tl",
+        "hostname": "wikipedia.org",
+        "source_url": "https://github.com/browserbase/browse.sh/blob/main/skills/wikipedia.org/get-article-4q40tl/SKILL.md",
+        "skill_md_url": "https://gh0lfhlmyzhg6tww.public.blob.vercel-storage.com/skills/wikipedia.org/get-article-4q40tl/SKILL.md"
+      },
+      "installed_at": "2026-06-27T19:40:28.553178+00:00",
+      "updated_at": "2026-06-27T19:40:28.553186+00:00"
+    },
+    "wiki": {
+      "source": "clawhub",
+      "identifier": "wiki",
+      "trust_level": "community",
+      "scan_verdict": "safe",
+      "content_hash": "sha256:c6773e86c32d50c2",
+      "install_path": "wiki",
+      "files": [
+        "skill-card.md",
+        "SKILL.md",
+        "_meta.json"
+      ],
+      "metadata": {},
+      "installed_at": "2026-06-27T19:41:07.693519+00:00",
+      "updated_at": "2026-06-27T19:41:07.693525+00:00"
+    }
+  }
+}

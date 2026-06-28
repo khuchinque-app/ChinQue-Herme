@@ -1,0 +1,13 @@
+┌─────────────────────────────────────────────────────────┐
+│           ⚕ Hermes Gateway Starting...                 │
+├─────────────────────────────────────────────────────────┤
+│  Messaging platforms + cron scheduler                    │
+│  Press Ctrl+C to stop                                   │
+└─────────────────────────────────────────────────────────┘
+
+
+❌ Gateway already running (PID 850836).
+   Use 'hermes gateway restart' to replace it,
+   or 'hermes gateway stop' to kill it first.
+   Or use 'hermes gateway run --replace' to auto-replace.
+

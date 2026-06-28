@@ -1,0 +1,29 @@
+30: command not found
+30: command not found
+30: command not found
+30: command not found
+curator: running review pass...
+curator: snapshot created (2026-06-27T18-00-02Z)
+curator: auto: no changes; llm: ## Human Summary
+
+Completed a 6-cluster consolidation pass across 71 candidate skills, archiving 16 and creating 1 new umbrella:
+
+**Cluster 1: Apple platform skills (pruning)**
+Archived `apple-notes`, `apple-reminders`, `findmy`, `imessage`…
+archived 14 skill(s):
+  • audiocraft-audio-generation → audio-and-music
+  • design-md → claude-design
+  • excalidraw → architecture-diagram
+  • heartmula → audio-and-music
+  • node-inspect-debugger → systematic-debugging
+  • python-debugpy → systematic-debugging
+  • simplify-code → requesting-code-review
+  • sketch → claude-design
+  • songsee → audio-and-music
+  • songwriting-and-ai-music → audio-and-music
+  … and 4 more
+full report: hermes curator status
+keep an umbrella stable: hermes curator pin architecture-diagram
+auto: checked=71 stale=0 archived=0 reactivated=0
+/bin/sh: 1: /home/khuchinque/.local/bin/hermes: not found
+/bin/sh: 1: /home/khuchinque/.local/bin/hermes: not found

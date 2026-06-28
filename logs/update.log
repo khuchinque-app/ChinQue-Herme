@@ -1,0 +1,296 @@
+
+=== hermes update started 2026-06-23T07:50:41 ===
+⚕ Updating Hermes Agent...
+
+→ Fetching updates...
+✓ Already up to date!
+
+=== hermes update started 2026-06-27T16:55:53 ===
+⚕ Updating Hermes Agent...
+
+→ Fetching updates...
+→ Found 2 new commit(s)
+  ✓ Pre-update snapshot: 20260627-165555-pre-update
+→ Pulling updates...
+  ⚠ Fast-forward not possible (history diverged), resetting to match remote...
+  ✓ Cleared 100 stale __pycache__ directories
+→ Updating Python dependencies...
+
+→ Refreshing 13 active lazy backend(s)...
+  ✓ 13 already current
+→ Updating Node.js dependencies...
+  ✓ repo root + ui-tui, web workspaces (desktop skipped)
+→ Building web UI...
+    
+    > web@0.0.0 build
+    > tsc -b && vite build
+    
+    vite v8.1.0 building client environment for production...
+    [2K
+    transforming...✓ 481 modules transformed.
+    rendering chunks...
+    computing gzip size...
+    ../hermes_cli/web_dist/index.html                                         0.51 kB │ gzip:   0.32 kB
+    ../hermes_cli/web_dist/assets/Mondwest-Regular-CWscgue7.woff2            23.82 kB
+    ../hermes_cli/web_dist/assets/RulesExpanded-Regular-l8uVympt.woff2       33.82 kB
+    ../hermes_cli/web_dist/assets/RulesExpanded-Bold-DZA7s8Pa.woff2          35.01 kB
+    ../hermes_cli/web_dist/assets/RulesCompressed-Regular-BSXFyF4x.woff2     37.76 kB
+    ../hermes_cli/web_dist/assets/RulesCompressed-Medium-CA76_CrB.woff2      38.84 kB
+    ../hermes_cli/web_dist/assets/Collapse-Bold-mgICk9-_.woff2               59.14 kB
+    ../hermes_cli/web_dist/assets/Collapse-Regular-DysayoTY.woff2            62.81 kB
+    ../hermes_cli/web_dist/assets/filler-bg0-DxMaWJpb.webp                  185.27 kB
+    ../hermes_cli/web_dist/assets/index-Bq6BJgNT.css                        110.70 kB │ gzip:  17.65 kB
+    ../hermes_cli/web_dist/assets/index-6voxfvAy.js                       1,914.86 kB │ gzip: 545.39 kB
+    
+    ✓ built in 1.13s
+    [plugin builtin:vite-reporter]
+    (!) Some chunks are larger than 500 kB after minification. Consider:
+    - Using dynamic import() to code-split the application
+    - Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+    - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+  ✓ Web UI built
+
+✓ Code updated!
+  ✓ Model catalog cache refreshed from checkout
+
+→ Syncing bundled skills...
+  ↑ 1 updated: hermes-agent
+
+→ Syncing bundled skills to all profiles...
+  default: up to date
+  pi-agent: ↑1 updated
+
+→ Checking configuration for new options...
+  ✓ Configuration is up to date
+
+✓ Update complete!
+
+→ Refreshing cua-driver (Computer Use)...
+[2m      Refreshing cua-driver...[0m
+[32m✓     cua-driver upgraded: cua-driver 0.6.7 → cua-driver 0.6.8[0m
+
+  ✓ Restarting manual gateway profile(s): default
+
+Tip: You can now select a provider and model:
+  hermes model              # Select provider and model
+
+=== hermes update started 2026-06-27T17:29:05 ===
+⚕ Updating Hermes Agent...
+
+→ Fetching updates...
+✓ Already up to date!
+
+=== hermes update started 2026-06-27T17:30:22 ===
+⚕ Updating Hermes Agent...
+
+→ Fetching updates...
+✓ Already up to date!
+
+=== hermes update started 2026-06-27T17:32:10 ===
+⚕ Updating Hermes Agent...
+
+→ Fetching updates...
+✓ Already up to date!
+
+=== hermes update started 2026-06-27T19:47:00 ===
+⚕ Updating Hermes Agent...
+
+→ Fetching updates...
+→ Local changes detected — stashing before update...
+→ Found 1 new commit(s)
+  ✓ Pre-update snapshot: 20260627-194701-pre-update
+→ Pulling updates...
+  ⚠ Fast-forward not possible (history diverged), resetting to match remote...
+→ Restoring local changes...
+⚠ Local changes were restored on top of the updated codebase.
+  Review `git diff` / `git status` if Hermes behaves unexpectedly.
+  ✓ Cleared 95 stale __pycache__ directories
+→ Updating Python dependencies...
+
+→ Refreshing 14 active lazy backend(s)...
+  ↑ 2 refreshed: platform.slack, platform.teams
+  ✓ 12 already current
+→ Updating Node.js dependencies...
+  ✓ repo root + ui-tui, web workspaces (desktop skipped)
+→ Building web UI...
+    
+    > web@0.0.0 build
+    > tsc -b && vite build
+    
+    sh: 1: tsc: not found
+    npm error Lifecycle script `build` failed with error:
+    npm error code 127
+    npm error path /home/khuchinque/.hermes/hermes-agent/web
+    npm error workspace web@0.0.0
+    npm error location /home/khuchinque/.hermes/hermes-agent/web
+    npm error command failed
+    npm error command sh -c tsc -b && vite build
+    
+    > web@0.0.0 build
+    > tsc -b && vite build
+    
+    sh: 1: tsc: not found
+    npm error Lifecycle script `build` failed with error:
+    npm error code 127
+    npm error path /home/khuchinque/.hermes/hermes-agent/web
+    npm error workspace web@0.0.0
+    npm error location /home/khuchinque/.hermes/hermes-agent/web
+    npm error command failed
+    npm error command sh -c tsc -b && vite build
+  ⚠ Web UI build failed (hermes web will not be available)
+
+> web@0.0.0 build
+> tsc -b && vite build
+
+sh: 1: tsc: not found
+npm error Lifecycle script `build` failed with error:
+npm error code 127
+npm error path /home/khuchinque/.hermes/hermes-agent/web
+npm error workspace web@0.0.0
+npm error location /home/khuchinque/.hermes/hermes-agent/web
+npm error command failed
+npm error command sh -c tsc -b && vite build
+
+✓ Code updated!
+  ✓ Model catalog cache refreshed from checkout
+
+→ Syncing bundled skills...
+  ~ 4 user-modified (kept)
+    → see them: hermes skills list-modified  (diff/reset to resume updates)
+  ✓ Skills are up to date
+
+→ Syncing bundled skills to all profiles...
+  default: ~4 user-modified
+  pi-agent: up to date
+
+-> Honcho: synced 1 profile(s)
+
+→ Checking configuration for new options...
+  ✓ Configuration is up to date
+
+✓ Update complete!
+
+ℹ Skill curator — last run 1h ago
+  auto: no changes; llm: ## Human Summary
+  
+  Completed a 6-cluster consolidation pass across 71 candidate skills, archiving 16 and creating 1 new umbrella:
+  
+  **Cluster 1: Apple platform skills (pruning)**
+  Archived `apple-notes`, `apple-reminders`, `findmy`, `imessage`…
+  archived 14 skill(s):
+    • audiocraft-audio-generation → audio-and-music
+    • design-md → claude-design
+    • excalidraw → architecture-diagram
+    • heartmula → audio-and-music
+    • node-inspect-debugger → systematic-debugging
+    • python-debugpy → systematic-debugging
+    • simplify-code → requesting-code-review
+    • sketch → claude-design
+    • songsee → audio-and-music
+    • songwriting-and-ai-music → audio-and-music
+    … and 4 more
+  full report: hermes curator status
+  keep an umbrella stable: hermes curator pin architecture-diagram
+  (This message shows once per curator run. View anytime: hermes curator status)
+
+→ Refreshing cua-driver (Computer Use)...
+      Refreshing cua-driver...
+
+--- cua-driver installer output ---
+note: detected non-macOS host (Linux); installing cua-driver via the Rust implementation.
+==> using baked release: cua-driver-rs-v0.6.8
+==> downloading https://github.com/trycua/cua/releases/download/cua-driver-rs-v0.6.8/cua-driver-rs-0.6.8-linux-x86_64-binary.tar.gz
+==> extracting
+==> installed /home/khuchinque/.cua-driver/packages/releases/0.6.8-x86_64-unknown-linux-gnu/cua-driver (version 0.6.8, target x86_64-unknown-linux-gnu)
+==> current -> releases/0.6.8-x86_64-unknown-linux-gnu
+==> symlinked /home/khuchinque/.local/bin/cua-driver -> /home/khuchinque/.cua-driver/packages/current/cua-driver
+==> stopping any running cua-driver daemons before swap
+
+cua-driver-rs 0.6.8 installed.
+
+
+Next steps:
+
+  1. Try it:
+       /home/khuchinque/.local/bin/cua-driver --version
+       /home/khuchinque/.local/bin/cua-driver list-tools
+
+  2. Grant permissions (macOS — Accessibility + Screen Recording):
+       /home/khuchinque/.local/bin/cua-driver permissions status   # report status (read-only; tells you which
+                                       # identity the grants belong to)
+       /home/khuchinque/.local/bin/cua-driver permissions grant    # the correct way to grant — launches CuaDriver
+                                       # so the dialog says "Cua Driver" and the grant
+                                       # sticks to the driver, not your terminal.
+                                   # Tip: `--autostart` (above) keeps a launchd daemon
+                                   # running so you grant once and it persists.
+
+  3. Agent skill pack (optional):
+       /home/khuchinque/.local/bin/cua-driver skills install   # fetch + link the cua-driver skill pack
+                                   # into Claude Code / Codex / OpenClaw / OpenCode.
+                                   # The install never touches your agent dirs.
+
+  4. As an MCP server — run the one matching your client. Each is also
+     available via '/home/khuchinque/.local/bin/cua-driver mcp-config --client <name>':
+
+     • Claude Code (computer-use compatibility mode):
+         /home/khuchinque/.local/bin/cua-driver mcp-config --client claude
+       Copy-paste the printed command into your shell — it uses
+       `claude mcp add-json` (not bare `--`) so the long flag travels
+       through PowerShell's arg parser intact. This mode grounds Claude
+       Code's vision/computer-use-style flow on CuaDriver window
+       screenshots — it keeps the normal CuaDriver tools and changes
+       only the screenshot tool.
+
+     • Codex (OpenAI):
+         codex mcp add cua-driver -- /home/khuchinque/.local/bin/cua-driver mcp
+
+     • OpenClaw:
+         /home/khuchinque/.local/bin/cua-driver mcp-config --client openclaw
+
+     • GitHub Copilot CLI (paste into ~/.copilot/mcp-config.json):
+         {
+           "mcpServers": {
+             "cua-driver": {
+               "type": "local",
+               "command": "/home/khuchinque/.local/bin/cua-driver",
+               "args": ["mcp"],
+               "tools": ["*"]
+             }
+           }
+         }
+
+     • Cursor / OpenCode / Hermes (no add CLI — paste config):
+         /home/khuchinque/.local/bin/cua-driver mcp-config --client cursor     # JSON for ~/.cursor/mcp.json
+         /home/khuchinque/.local/bin/cua-driver mcp-config --client opencode   # JSON for opencode.json
+         /home/khuchinque/.local/bin/cua-driver mcp-config --client hermes     # YAML for ~/.hermes/config.yaml
+
+     For other clients accepting the generic mcpServers shape:
+         /home/khuchinque/.local/bin/cua-driver mcp-config
+
+Docs: https://github.com/trycua/cua/tree/main/libs/cua-driver/rust
+
+Auto-start at logon (optional):
+  Re-run the local installer with --autostart to register a systemd user unit.
+
+      cua-driver up to date: cua-driver 0.6.8
+  → default: draining gateway PID 199912 (up to 195s)...
+
+  ✓ Restarting manual gateway profile(s): default
+
+Tip: You can now select a provider and model:
+  hermes model              # Select provider and model
+
+=== hermes update started 2026-06-27T19:48:14 ===
+⚕ Updating Hermes Agent...
+
+→ Fetching updates...
+→ Local changes detected — stashing before update...
+
+⚠ Local changes were stashed before updating.
+  Restoring them may reapply local customizations onto the updated codebase.
+  Review the result afterward if Hermes behaves unexpectedly.
+Restore local changes now? [Y/n]
+→ Restoring local changes...
+⚠ Local changes were restored on top of the updated codebase.
+  Review `git diff` / `git status` if Hermes behaves unexpectedly.
+✓ Already up to date!

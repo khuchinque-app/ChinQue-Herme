@@ -1,0 +1,20 @@
+{
+  "id": "20260627-194701-pre-update",
+  "timestamp": "20260627-194701",
+  "label": "pre-update",
+  "file_count": 11,
+  "total_size": 20514428,
+  "files": {
+    "state.db": 20291584,
+    "config.yaml": 19232,
+    ".env": 23680,
+    "auth.json": 9294,
+    "cron/jobs.json": 1412,
+    "gateway_state.json": 536,
+    "channel_directory.json": 752,
+    "processes.json": 2,
+    "response_store.db": 20480,
+    "verification_evidence.db": 32768,
+    "kanban.db": 114688
+  }
+}

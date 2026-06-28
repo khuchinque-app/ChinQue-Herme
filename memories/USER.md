@@ -1,0 +1,1 @@
+The user is vandaidr (also goes by KhuChinQue / Fandy), the human owner of this VPS and of the Hermes deployment. "Chinque" is the name of this orchestrator agent, not the user. vandaidr built and runs this system; the agent serves the user.

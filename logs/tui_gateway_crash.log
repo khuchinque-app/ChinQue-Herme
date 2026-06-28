@@ -1,0 +1,554 @@
+[tui-parent] 2026-06-27T16:56:46.110Z [lifecycle] spawned gateway child pid=186558 killed=false exitCode=null signal=null python=/home/khuchinque/.hermes/hermes-agent/venv/bin/python3 cwd=/home/khuchinque
+[tui-parent] 2026-06-27T17:20:57.292Z [lifecycle] GatewayClient.kill reason=app.die pid=186558 killed=true exitCode=null signal=null killResult=true
+
+=== SIGTERM received · 2026-06-27 17:20:57 ===
+main-thread stack at signal delivery:
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/khuchinque/.hermes/hermes-agent/tui_gateway/entry.py", line 350, in <module>
+    main()
+  File "/home/khuchinque/.hermes/hermes-agent/tui_gateway/entry.py", line 326, in main
+    for raw in sys.stdin:
+
+--- thread MainThread (id=130366550886208) ---
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/khuchinque/.hermes/hermes-agent/tui_gateway/entry.py", line 350, in <module>
+    main()
+  File "/home/khuchinque/.hermes/hermes-agent/tui_gateway/entry.py", line 326, in main
+    for raw in sys.stdin:
+  File "/home/khuchinque/.hermes/hermes-agent/tui_gateway/entry.py", line 113, in _log_signal
+    f.write("".join(traceback.format_stack(sys._current_frames().get(tid))))
+
+--- thread Thread-2 (_loop) (id=130366527325888) ---
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1002, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1045, in _bootstrap_inner
+    self.run()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 982, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/khuchinque/.hermes/hermes-agent/tui_gateway/server.py", line 825, in _loop
+    time.sleep(_REAPER_SCAN_S)
+
+--- thread tui-rpc_0 (id=130366518933184) ---
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1002, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1045, in _bootstrap_inner
+    self.run()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 982, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/concurrent/futures/thread.py", line 81, in _worker
+    work_item = work_queue.get(block=True)
+
+--- thread Thread-6 (_drain_stdout) (id=130366283183808) ---
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1002, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1045, in _bootstrap_inner
+    self.run()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 982, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/khuchinque/.hermes/hermes-agent/tui_gateway/server.py", line 283, in _drain_stdout
+    for line in self.proc.stdout or []:
+
+--- thread Thread-7 (_drain_stderr) (id=130366494811840) ---
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1002, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1045, in _bootstrap_inner
+    self.run()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 982, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/khuchinque/.hermes/hermes-agent/tui_gateway/server.py", line 291, in _drain_stderr
+    for line in self.proc.stderr or []:
+
+--- thread Thread-8 (_notification_poller_loop) (id=130366110164672) ---
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1002, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1045, in _bootstrap_inner
+    self.run()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 982, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/khuchinque/.hermes/hermes-agent/tui_gateway/server.py", line 8165, in _notification_poller_loop
+    evt = process_registry.completion_queue.get(timeout=0.5)
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/queue.py", line 180, in get
+    self.not_empty.wait(remaining)
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 331, in wait
+    gotit = waiter.acquire(True, timeout)
+
+--- thread Thread-13 (_cleanup_thread_worker) (id=130366118557376) ---
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1002, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1045, in _bootstrap_inner
+    self.run()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 982, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/khuchinque/.hermes/hermes-agent/tools/terminal_tool.py", line 1574, in _cleanup_thread_worker
+    time.sleep(1)
+[tui-parent] 2026-06-27T17:41:26.659Z [lifecycle] spawned gateway child pid=203028 killed=false exitCode=null signal=null python=/home/khuchinque/.hermes/hermes-agent/venv/bin/python3 cwd=/home/khuchinque
+[tui-parent] 2026-06-27T17:45:56.871Z uncaughtException: Error: write EIO
+
+=== SIGHUP received · 2026-06-27 17:45:56 ===
+main-thread stack at signal delivery:
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/khuchinque/.hermes/hermes-agent/tui_gateway/entry.py", line 350, in <module>
+    main()
+  File "/home/khuchinque/.hermes/hermes-agent/tui_gateway/entry.py", line 326, in main
+    for raw in sys.stdin:
+
+--- thread MainThread (id=136542152357696) ---
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/khuchinque/.hermes/hermes-agent/tui_gateway/entry.py", line 350, in <module>
+    main()
+  File "/home/khuchinque/.hermes/hermes-agent/tui_gateway/entry.py", line 326, in main
+    for raw in sys.stdin:
+  File "/home/khuchinque/.hermes/hermes-agent/tui_gateway/entry.py", line 113, in _log_signal
+    f.write("".join(traceback.format_stack(sys._current_frames().get(tid))))
+
+--- thread Thread-2 (_loop) (id=136542128826048) ---
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1002, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1045, in _bootstrap_inner
+    self.run()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 982, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/khuchinque/.hermes/hermes-agent/tui_gateway/server.py", line 825, in _loop
+    time.sleep(_REAPER_SCAN_S)
+
+--- thread tui-rpc_0 (id=136542120433344) ---
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1002, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1045, in _bootstrap_inner
+    self.run()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 982, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/concurrent/futures/thread.py", line 81, in _worker
+    work_item = work_queue.get(block=True)
+
+--- thread honcho-async-writer (id=136542028822208) ---
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1002, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1045, in _bootstrap_inner
+    self.run()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 982, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/khuchinque/.hermes/hermes-agent/plugins/memory/honcho/session.py", line 465, in _async_writer_loop
+    item = self._async_queue.get(timeout=5)
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/queue.py", line 180, in get
+    self.not_empty.wait(remaining)
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 331, in wait
+    gotit = waiter.acquire(True, timeout)
+
+--- thread Thread-6 (_drain_stdout) (id=136541673354944) ---
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1002, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1045, in _bootstrap_inner
+    self.run()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 982, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/khuchinque/.hermes/hermes-agent/tui_gateway/server.py", line 283, in _drain_stdout
+    for line in self.proc.stdout or []:
+
+--- thread Thread-7 (_drain_stderr) (id=136541664962240) ---
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1002, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1045, in _bootstrap_inner
+    self.run()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 982, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/khuchinque/.hermes/hermes-agent/tui_gateway/server.py", line 291, in _drain_stderr
+    for line in self.proc.stderr or []:
+
+--- thread Thread-8 (_notification_poller_loop) (id=136541439522496) ---
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1002, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1045, in _bootstrap_inner
+    self.run()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 982, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/khuchinque/.hermes/hermes-agent/tui_gateway/server.py", line 8165, in _notification_poller_loop
+    evt = process_registry.completion_queue.get(timeout=0.5)
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/queue.py", line 180, in get
+    self.not_empty.wait(remaining)
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 331, in wait
+    gotit = waiter.acquire(True, timeout)
+
+--- thread Thread-13 (run) (id=136542012036800) ---
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1002, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1045, in _bootstrap_inner
+    self.run()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 982, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/khuchinque/.hermes/hermes-agent/tui_gateway/server.py", line 8426, in run
+    result = agent.run_conversation(run_message, **run_kwargs)
+  File "/home/khuchinque/.hermes/hermes-agent/run_agent.py", line 5347, in run_conversation
+    return run_conversation(
+  File "/home/khuchinque/.hermes/hermes-agent/agent/conversation_loop.py", line 1185, in run_conversation
+    response = run_llm_execution_middleware(
+  File "/home/khuchinque/.hermes/hermes-agent/hermes_cli/middleware.py", line 181, in run_llm_execution_middleware
+    return next_call(request)
+  File "/home/khuchinque/.hermes/hermes-agent/agent/conversation_loop.py", line 1178, in _perform_api_call
+    return agent._interruptible_streaming_api_call(
+  File "/home/khuchinque/.hermes/hermes-agent/run_agent.py", line 4352, in _interruptible_streaming_api_call
+    return interruptible_streaming_api_call(self, api_kwargs, on_first_delta=on_first_delta)
+  File "/home/khuchinque/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 2599, in interruptible_streaming_api_call
+    t.join(timeout=0.3)
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1123, in join
+    self._wait_for_tstate_lock(timeout=max(timeout, 0))
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1139, in _wait_for_tstate_lock
+    if lock.acquire(block, timeout):
+
+--- thread Thread-15 (_cleanup_thread_worker) (id=136542020429504) ---
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1002, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1045, in _bootstrap_inner
+    self.run()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 982, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/khuchinque/.hermes/hermes-agent/tools/terminal_tool.py", line 1574, in _cleanup_thread_worker
+    time.sleep(1)
+
+--- thread Thread-66 (_call) (id=136541656569536) ---
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1002, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1045, in _bootstrap_inner
+    self.run()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 982, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/khuchinque/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 2290, in _call
+    result["response"] = _call_chat_completions()
+  File "/home/khuchinque/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 1911, in _call_chat_completions
+    for chunk in stream:
+  File "/home/khuchinque/.hermes/hermes-agent/venv/lib/python3.11/site-packages/openai/_streaming.py", line 49, in __iter__
+    for item in self._iterator:
+  File "/home/khuchinque/.hermes/hermes-agent/venv/lib/python3.11/site-packages/openai/_streaming.py", line 62, in __stream__
+    for sse in iterator:
+  File "/home/khuchinque/.hermes/hermes-agent/venv/lib/python3.11/site-packages/openai/_streaming.py", line 53, in _iter_events
+    yield from self._decoder.iter_bytes(self.response.iter_bytes())
+  File "/home/khuchinque/.hermes/hermes-agent/venv/lib/python3.11/site-packages/openai/_streaming.py", line 297, in iter_bytes
+    for chunk in self._iter_chunks(iterator):
+  File "/home/khuchinque/.hermes/hermes-agent/venv/lib/python3.11/site-packages/openai/_streaming.py", line 308, in _iter_chunks
+    for chunk in iterator:
+  File "/home/khuchinque/.hermes/hermes-agent/venv/lib/python3.11/site-packages/httpx/_models.py", line 897, in iter_bytes
+    for raw_bytes in self.iter_raw():
+  File "/home/khuchinque/.hermes/hermes-agent/venv/lib/python3.11/site-packages/httpx/_models.py", line 951, in iter_raw
+    for raw_stream_bytes in self.stream:
+  File "/home/khuchinque/.hermes/hermes-agent/venv/lib/python3.11/site-packages/httpx/_client.py", line 153, in __iter__
+    for chunk in self._stream:
+  File "/home/khuchinque/.hermes/hermes-agent/venv/lib/python3.11/site-packages/httpx/_transports/default.py", line 127, in __iter__
+    for part in self._httpcore_stream:
+  File "/home/khuchinque/.hermes/hermes-agent/venv/lib/python3.11/site-packages/httpcore/_sync/connection_pool.py", line 403, in __iter__
+    for part in self._stream:
+  File "/home/khuchinque/.hermes/hermes-agent/venv/lib/python3.11/site-packages/httpcore/_sync/http11.py", line 334, in __iter__
+    for chunk in self._connection._receive_response_body(**kwargs):
+  File "/home/khuchinque/.hermes/hermes-agent/venv/lib/python3.11/site-packages/httpcore/_sync/http11.py", line 203, in _receive_response_body
+    event = self._receive_event(timeout=timeout)
+  File "/home/khuchinque/.hermes/hermes-agent/venv/lib/python3.11/site-packages/httpcore/_sync/http11.py", line 217, in _receive_event
+    data = self._network_stream.read(
+  File "/home/khuchinque/.hermes/hermes-agent/venv/lib/python3.11/site-packages/httpcore/_backends/sync.py", line 128, in read
+    return self._sock.recv(max_bytes)
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/ssl.py", line 1307, in recv
+    return self.read(buflen)
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/ssl.py", line 1180, in read
+    return self._sslobj.read(len)
+[tui-parent] 2026-06-27T17:45:56.879Z graceful-exit received signal=SIGHUP → killing gateway
+[tui-parent] 2026-06-27T17:45:56.880Z uncaughtException: Error: write EIO
+[tui-parent] 2026-06-27T17:45:56.880Z uncaughtException: Error: write EIO
+[tui-parent] 2026-06-27T17:45:56.881Z [lifecycle] GatewayClient.kill reason=graceful-exit-cleanup pid=203028 killed=true exitCode=null signal=null killResult=true
+
+=== SIGTERM received · 2026-06-27 17:45:56 ===
+main-thread stack at signal delivery:
+  File "/home/khuchinque/.hermes/hermes-agent/tools/terminal_tool.py", line 1722, in _atexit_cleanup
+    _stop_cleanup_thread()
+  File "/home/khuchinque/.hermes/hermes-agent/tools/terminal_tool.py", line 1594, in _stop_cleanup_thread
+    _cleanup_thread.join(timeout=5)
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1123, in join
+    self._wait_for_tstate_lock(timeout=max(timeout, 0))
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1139, in _wait_for_tstate_lock
+    if lock.acquire(block, timeout):
+
+--- thread MainThread (id=136542152357696) ---
+  File "/home/khuchinque/.hermes/hermes-agent/tools/terminal_tool.py", line 1722, in _atexit_cleanup
+    _stop_cleanup_thread()
+  File "/home/khuchinque/.hermes/hermes-agent/tools/terminal_tool.py", line 1594, in _stop_cleanup_thread
+    _cleanup_thread.join(timeout=5)
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1123, in join
+    self._wait_for_tstate_lock(timeout=max(timeout, 0))
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1139, in _wait_for_tstate_lock
+    if lock.acquire(block, timeout):
+  File "/home/khuchinque/.hermes/hermes-agent/tui_gateway/entry.py", line 113, in _log_signal
+    f.write("".join(traceback.format_stack(sys._current_frames().get(tid))))
+
+--- thread Thread-2 (_loop) (id=136542128826048) ---
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1002, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1045, in _bootstrap_inner
+    self.run()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 982, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/khuchinque/.hermes/hermes-agent/tui_gateway/server.py", line 825, in _loop
+    time.sleep(_REAPER_SCAN_S)
+
+--- thread honcho-async-writer (id=136542028822208) ---
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1002, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1045, in _bootstrap_inner
+    self.run()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 982, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/khuchinque/.hermes/hermes-agent/plugins/memory/honcho/session.py", line 465, in _async_writer_loop
+    item = self._async_queue.get(timeout=5)
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/queue.py", line 180, in get
+    self.not_empty.wait(remaining)
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 331, in wait
+    gotit = waiter.acquire(True, timeout)
+
+--- thread Thread-8 (_notification_poller_loop) (id=136541439522496) ---
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1002, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1045, in _bootstrap_inner
+    self.run()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 982, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/khuchinque/.hermes/hermes-agent/tui_gateway/server.py", line 8165, in _notification_poller_loop
+    evt = process_registry.completion_queue.get(timeout=0.5)
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/queue.py", line 180, in get
+    self.not_empty.wait(remaining)
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 331, in wait
+    gotit = waiter.acquire(True, timeout)
+
+--- thread Thread-13 (run) (id=136542012036800) ---
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1002, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1045, in _bootstrap_inner
+    self.run()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 982, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/khuchinque/.hermes/hermes-agent/tui_gateway/server.py", line 8426, in run
+    result = agent.run_conversation(run_message, **run_kwargs)
+  File "/home/khuchinque/.hermes/hermes-agent/run_agent.py", line 5347, in run_conversation
+    return run_conversation(
+  File "/home/khuchinque/.hermes/hermes-agent/agent/conversation_loop.py", line 1185, in run_conversation
+    response = run_llm_execution_middleware(
+  File "/home/khuchinque/.hermes/hermes-agent/hermes_cli/middleware.py", line 181, in run_llm_execution_middleware
+    return next_call(request)
+  File "/home/khuchinque/.hermes/hermes-agent/agent/conversation_loop.py", line 1178, in _perform_api_call
+    return agent._interruptible_streaming_api_call(
+  File "/home/khuchinque/.hermes/hermes-agent/run_agent.py", line 4352, in _interruptible_streaming_api_call
+    return interruptible_streaming_api_call(self, api_kwargs, on_first_delta=on_first_delta)
+  File "/home/khuchinque/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 2599, in interruptible_streaming_api_call
+    t.join(timeout=0.3)
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1123, in join
+    self._wait_for_tstate_lock(timeout=max(timeout, 0))
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1139, in _wait_for_tstate_lock
+    if lock.acquire(block, timeout):
+
+--- thread Thread-15 (_cleanup_thread_worker) (id=136542020429504) ---
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1002, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1045, in _bootstrap_inner
+    self.run()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 982, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/khuchinque/.hermes/hermes-agent/tools/terminal_tool.py", line 1574, in _cleanup_thread_worker
+    time.sleep(1)
+
+--- thread Thread-66 (_call) (id=136541656569536) ---
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1002, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1045, in _bootstrap_inner
+    self.run()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 982, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/khuchinque/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 2290, in _call
+    result["response"] = _call_chat_completions()
+  File "/home/khuchinque/.hermes/hermes-agent/agent/chat_completion_helpers.py", line 1911, in _call_chat_completions
+    for chunk in stream:
+  File "/home/khuchinque/.hermes/hermes-agent/venv/lib/python3.11/site-packages/openai/_streaming.py", line 49, in __iter__
+    for item in self._iterator:
+  File "/home/khuchinque/.hermes/hermes-agent/venv/lib/python3.11/site-packages/openai/_streaming.py", line 62, in __stream__
+    for sse in iterator:
+  File "/home/khuchinque/.hermes/hermes-agent/venv/lib/python3.11/site-packages/openai/_streaming.py", line 53, in _iter_events
+    yield from self._decoder.iter_bytes(self.response.iter_bytes())
+  File "/home/khuchinque/.hermes/hermes-agent/venv/lib/python3.11/site-packages/openai/_streaming.py", line 297, in iter_bytes
+    for chunk in self._iter_chunks(iterator):
+  File "/home/khuchinque/.hermes/hermes-agent/venv/lib/python3.11/site-packages/openai/_streaming.py", line 308, in _iter_chunks
+    for chunk in iterator:
+  File "/home/khuchinque/.hermes/hermes-agent/venv/lib/python3.11/site-packages/httpx/_models.py", line 897, in iter_bytes
+    for raw_bytes in self.iter_raw():
+  File "/home/khuchinque/.hermes/hermes-agent/venv/lib/python3.11/site-packages/httpx/_models.py", line 951, in iter_raw
+    for raw_stream_bytes in self.stream:
+  File "/home/khuchinque/.hermes/hermes-agent/venv/lib/python3.11/site-packages/httpx/_client.py", line 153, in __iter__
+    for chunk in self._stream:
+  File "/home/khuchinque/.hermes/hermes-agent/venv/lib/python3.11/site-packages/httpx/_transports/default.py", line 127, in __iter__
+    for part in self._httpcore_stream:
+  File "/home/khuchinque/.hermes/hermes-agent/venv/lib/python3.11/site-packages/httpcore/_sync/connection_pool.py", line 403, in __iter__
+    for part in self._stream:
+  File "/home/khuchinque/.hermes/hermes-agent/venv/lib/python3.11/site-packages/httpcore/_sync/http11.py", line 334, in __iter__
+    for chunk in self._connection._receive_response_body(**kwargs):
+  File "/home/khuchinque/.hermes/hermes-agent/venv/lib/python3.11/site-packages/httpcore/_sync/http11.py", line 203, in _receive_response_body
+    event = self._receive_event(timeout=timeout)
+  File "/home/khuchinque/.hermes/hermes-agent/venv/lib/python3.11/site-packages/httpcore/_sync/http11.py", line 217, in _receive_event
+    data = self._network_stream.read(
+  File "/home/khuchinque/.hermes/hermes-agent/venv/lib/python3.11/site-packages/httpcore/_backends/sync.py", line 128, in read
+    return self._sock.recv(max_bytes)
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/ssl.py", line 1307, in recv
+    return self.read(buflen)
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/ssl.py", line 1180, in read
+    return self._sslobj.read(len)
+
+--- thread Thread-67 (id=136541419595456) ---
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1002, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1045, in _bootstrap_inner
+    self.run()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1399, in run
+    self.finished.wait(self.interval)
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 629, in wait
+    signaled = self._cond.wait(timeout)
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 331, in wait
+    gotit = waiter.acquire(True, timeout)
+[tui-parent] 2026-06-27T17:45:56.895Z unhandledRejection: Error: EIO: i/o error, write
+[tui-parent] 2026-06-27T17:45:57.278Z [lifecycle] child exit pid=203028 killed=true exitCode=0 signal=null code=0 signal=null
+[tui-parent] 2026-06-27T17:45:57.278Z [lifecycle] transport exit code=0 reason=none
+[tui-parent] 2026-06-27T17:45:57.283Z [lifecycle] spawned gateway child pid=204822 killed=false exitCode=null signal=null python=/home/khuchinque/.hermes/hermes-agent/venv/bin/python3 cwd=/home/khuchinque
+
+=== gateway exit · 2026-06-27 17:46:00 · reason=stdin EOF (TUI closed the command pipe) ===
+
+=== unhandled exception · 2026-06-27 17:46:00 ===
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/khuchinque/.hermes/hermes-agent/tui_gateway/entry.py", line 350, in <module>
+    main()
+  File "/home/khuchinque/.hermes/hermes-agent/tui_gateway/entry.py", line 346, in main
+    _log_exit("stdin EOF (TUI closed the command pipe)")
+  File "/home/khuchinque/.hermes/hermes-agent/tui_gateway/entry.py", line 204, in _log_exit
+    print(f"[gateway-exit] {reason}", file=sys.stderr, flush=True)
+BrokenPipeError: [Errno 32] Broken pipe
+[tui-parent] 2026-06-27T17:53:49.933Z [lifecycle] spawned gateway child pid=207450 killed=false exitCode=null signal=null python=/home/khuchinque/.hermes/hermes-agent/venv/bin/python3 cwd=/home/khuchinque
+[tui-parent] 2026-06-27T19:48:04.347Z [lifecycle] GatewayClient.kill reason=app.die pid=207450 killed=true exitCode=null signal=null killResult=true
+
+=== SIGTERM received · 2026-06-27 19:48:04 ===
+main-thread stack at signal delivery:
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/khuchinque/.hermes/hermes-agent/tui_gateway/entry.py", line 350, in <module>
+    main()
+  File "/home/khuchinque/.hermes/hermes-agent/tui_gateway/entry.py", line 326, in main
+    for raw in sys.stdin:
+
+--- thread MainThread (id=129242829100864) ---
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/khuchinque/.hermes/hermes-agent/tui_gateway/entry.py", line 350, in <module>
+    main()
+  File "/home/khuchinque/.hermes/hermes-agent/tui_gateway/entry.py", line 326, in main
+    for raw in sys.stdin:
+  File "/home/khuchinque/.hermes/hermes-agent/tui_gateway/entry.py", line 113, in _log_signal
+    f.write("".join(traceback.format_stack(sys._current_frames().get(tid))))
+
+--- thread Thread-2 (_loop) (id=129242802874048) ---
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1002, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1045, in _bootstrap_inner
+    self.run()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 982, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/khuchinque/.hermes/hermes-agent/tui_gateway/server.py", line 825, in _loop
+    time.sleep(_REAPER_SCAN_S)
+
+--- thread tui-rpc_0 (id=129242811266752) ---
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1002, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1045, in _bootstrap_inner
+    self.run()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 982, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/concurrent/futures/thread.py", line 81, in _worker
+    work_item = work_queue.get(block=True)
+
+--- thread honcho-async-writer (id=129242773350080) ---
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1002, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1045, in _bootstrap_inner
+    self.run()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 982, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/khuchinque/.hermes/hermes-agent/plugins/memory/honcho/session.py", line 465, in _async_writer_loop
+    item = self._async_queue.get(timeout=5)
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/queue.py", line 180, in get
+    self.not_empty.wait(remaining)
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 331, in wait
+    gotit = waiter.acquire(True, timeout)
+
+--- thread Thread-6 (_drain_stdout) (id=129242350220992) ---
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1002, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1045, in _bootstrap_inner
+    self.run()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 982, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/khuchinque/.hermes/hermes-agent/tui_gateway/server.py", line 283, in _drain_stdout
+    for line in self.proc.stdout or []:
+
+--- thread Thread-7 (_drain_stderr) (id=129242341828288) ---
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1002, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1045, in _bootstrap_inner
+    self.run()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 982, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/khuchinque/.hermes/hermes-agent/tui_gateway/server.py", line 291, in _drain_stderr
+    for line in self.proc.stderr or []:
+
+--- thread Thread-8 (_notification_poller_loop) (id=129242325042880) ---
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1002, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1045, in _bootstrap_inner
+    self.run()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 982, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/khuchinque/.hermes/hermes-agent/tui_gateway/server.py", line 8165, in _notification_poller_loop
+    evt = process_registry.completion_queue.get(timeout=0.5)
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/queue.py", line 180, in get
+    self.not_empty.wait(remaining)
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 331, in wait
+    gotit = waiter.acquire(True, timeout)
+
+--- thread Thread-13 (_cleanup_thread_worker) (id=129242764957376) ---
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1002, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1045, in _bootstrap_inner
+    self.run()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 982, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/khuchinque/.hermes/hermes-agent/tools/terminal_tool.py", line 1574, in _cleanup_thread_worker
+    time.sleep(1)
+
+--- thread mem-sync_0 (id=129242333435584) ---
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1002, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1045, in _bootstrap_inner
+    self.run()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 982, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/concurrent/futures/thread.py", line 81, in _worker
+    work_item = work_queue.get(block=True)
+
+--- thread hermes-lsp-loop (id=129242297960128) ---
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1002, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 1045, in _bootstrap_inner
+    self.run()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/threading.py", line 982, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/khuchinque/.hermes/hermes-agent/agent/lsp/manager.py", line 93, in _run_forever
+    loop.run_forever()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/asyncio/base_events.py", line 608, in run_forever
+    self._run_once()
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/asyncio/base_events.py", line 1898, in _run_once
+    event_list = self._selector.select(timeout)
+  File "/home/khuchinque/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/selectors.py", line 468, in select
+    fd_event_list = self._selector.poll(timeout, max_ev)

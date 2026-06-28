@@ -1,0 +1,860 @@
+=== shutdown diagnostic @ SIGTERM ===
+--- date ---
+2026-06-23T07:30:46Z
+--- ps auxf (top 60 by cpu) ---
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           2  0.0  0.0      0     0 ?        S    Jun17   0:00 [kthreadd]
+root      824363  0.1  0.0      0     0 ?        I    07:09   0:01  \_ [kworker/u8:1-flush-8:0]
+root           1  0.1  0.0  23196 12388 ?        Ss   Jun17  12:03 /usr/lib/systemd/systemd --system --deserialize=60
+root      826286 77.7  0.8 448592 135308 ?       Rl   07:30   0:01 /home/khuchinque/.hermes/hermes-agent/venv/bin/python3 /home/khuchinque/.hermes/hermes-agent/venv/bin/hermes gateway run
+root      826303  0.0  0.0   6120  2172 ?        Ss   07:30   0:00  \_ timeout 5 bash -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 826286 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+root      826304  0.0  0.0   7740  3832 ?        S    07:30   0:00      \_ bash -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 826286 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+root      826306  0.0  0.0  11452  4600 ?        R    07:30   0:00          \_ ps auxf --sort=-pcpu
+root      826307  0.0  0.0   6124  2044 ?        S    07:30   0:00          \_ head -60
+--- pstree of self ---
+hermes,826286 /home/khuchinque/.hermes/hermes-agent/venv/bin/hermes gateway run
+  |-timeout,826303 5 bash -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 826286 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+  |   `-bash,826304 -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 826286 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+  |       |-head,826309 -40
+  |       `-pstree,826308 -plau 826286
+  |-{hermes},826294
+  |-{hermes},826295
+  |-{hermes},826296
+  `-{hermes},826298
+--- /proc/loadavg ---
+0.77 0.23 0.12 2/304 826310
+--- recent dmesg (oom/killed) ---
+[Tue Jun 23 07:24:24 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=118 ID=46061 DF PROTO=TCP SPT=1901 DPT=8787 WINDOW=65535 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:24:44 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=118 ID=46070 DF PROTO=TCP SPT=4887 DPT=8787 WINDOW=65535 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:25:07 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=118 ID=46080 DF PROTO=TCP SPT=5401 DPT=8787 WINDOW=65535 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:25:28 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=55 ID=2395 DF PROTO=TCP SPT=2137 DPT=7500 WINDOW=64240 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:25:48 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=55 ID=2420 DF PROTO=TCP SPT=2167 DPT=7500 WINDOW=64240 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:26:07 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=118 ID=46088 DF PROTO=TCP SPT=10196 DPT=8787 WINDOW=65535 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:26:28 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=95.214.52.198 DST=187.127.178.20 LEN=44 TOS=0x00 PREC=0x40 TTL=246 ID=22938 PROTO=TCP SPT=54506 DPT=26155 WINDOW=1025 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:26:48 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=55 ID=2492 DF PROTO=TCP SPT=1888 DPT=7500 WINDOW=64240 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:27:07 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=118 ID=46101 DF PROTO=TCP SPT=2152 DPT=8787 WINDOW=65535 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:27:24 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=118 ID=46111 DF PROTO=TCP SPT=2816 DPT=8787 WINDOW=65535 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:27:44 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=118 ID=46120 DF PROTO=TCP SPT=4908 DPT=8787 WINDOW=65535 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:28:04 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=118 ID=46131 DF PROTO=TCP SPT=2861 DPT=8787 WINDOW=65535 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:28:24 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=118 ID=46141 DF PROTO=TCP SPT=4908 DPT=8787 WINDOW=65535 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:28:44 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=118 ID=46150 DF PROTO=TCP SPT=2154 DPT=8787 WINDOW=65535 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:29:07 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=118 ID=46160 DF PROTO=TCP SPT=3904 DPT=8787 WINDOW=65535 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:29:28 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=55 ID=2652 DF PROTO=TCP SPT=1867 DPT=8787 WINDOW=64240 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:29:48 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=55 ID=2680 DF PROTO=TCP SPT=2167 DPT=7500 WINDOW=64240 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:30:07 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=118 ID=46168 DF PROTO=TCP SPT=2208 DPT=8787 WINDOW=65535 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:30:28 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=55 ID=2733 DF PROTO=TCP SPT=3938 DPT=8787 WINDOW=64240 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:30:45 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=130.250.191.108 DST=187.127.178.20 LEN=40 TOS=0x00 PREC=0x00 TTL=242 ID=28840 PROTO=TCP SPT=61081 DPT=7262 WINDOW=1024 RES=0x00 SYN URGP=0 
+=== end ===
+=== shutdown diagnostic @ SIGTERM ===
+--- date ---
+2026-06-23T07:30:55Z
+--- ps auxf (top 60 by cpu) ---
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           2  0.0  0.0      0     0 ?        S    Jun17   0:00 [kthreadd]
+root      824363  0.1  0.0      0     0 ?        I    07:09   0:01  \_ [kworker/u8:1-events_unbound]
+root           1  0.1  0.0  23196 12388 ?        Ss   Jun17  12:03 /usr/lib/systemd/systemd --system --deserialize=60
+root      826340 73.2  0.7 436024 122788 ?       Rl   07:30   0:01 /home/khuchinque/.hermes/hermes-agent/venv/bin/python3 /home/khuchinque/.hermes/hermes-agent/venv/bin/hermes gateway run
+root      826354  0.0  0.0   6120  2172 ?        Ss   07:30   0:00  \_ timeout 5 bash -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 826340 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+root      826355  0.0  0.0   7740  3860 ?        S    07:30   0:00      \_ bash -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 826340 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+root      826357  0.0  0.0  11452  4616 ?        R    07:30   0:00          \_ ps auxf --sort=-pcpu
+root      826358  0.0  0.0   6124  2052 ?        S    07:30   0:00          \_ head -60
+--- pstree of self ---
+hermes,826340 /home/khuchinque/.hermes/hermes-agent/venv/bin/hermes gateway run
+  |-timeout,826354 5 bash -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 826340 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+  |   `-bash,826355 -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 826340 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+  |       |-head,826360 -40
+  |       `-pstree,826359 -plau 826340
+  |-{hermes},826344
+  |-{hermes},826345
+  |-{hermes},826346
+  `-{hermes},826349
+--- /proc/loadavg ---
+0.71 0.23 0.12 1/304 826361
+--- recent dmesg (oom/killed) ---
+[Tue Jun 23 07:24:24 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=118 ID=46061 DF PROTO=TCP SPT=1901 DPT=8787 WINDOW=65535 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:24:44 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=118 ID=46070 DF PROTO=TCP SPT=4887 DPT=8787 WINDOW=65535 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:25:07 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=118 ID=46080 DF PROTO=TCP SPT=5401 DPT=8787 WINDOW=65535 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:25:28 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=55 ID=2395 DF PROTO=TCP SPT=2137 DPT=7500 WINDOW=64240 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:25:48 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=55 ID=2420 DF PROTO=TCP SPT=2167 DPT=7500 WINDOW=64240 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:26:07 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=118 ID=46088 DF PROTO=TCP SPT=10196 DPT=8787 WINDOW=65535 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:26:28 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=95.214.52.198 DST=187.127.178.20 LEN=44 TOS=0x00 PREC=0x40 TTL=246 ID=22938 PROTO=TCP SPT=54506 DPT=26155 WINDOW=1025 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:26:48 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=55 ID=2492 DF PROTO=TCP SPT=1888 DPT=7500 WINDOW=64240 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:27:07 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=118 ID=46101 DF PROTO=TCP SPT=2152 DPT=8787 WINDOW=65535 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:27:24 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=118 ID=46111 DF PROTO=TCP SPT=2816 DPT=8787 WINDOW=65535 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:27:44 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=118 ID=46120 DF PROTO=TCP SPT=4908 DPT=8787 WINDOW=65535 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:28:04 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=118 ID=46131 DF PROTO=TCP SPT=2861 DPT=8787 WINDOW=65535 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:28:24 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=118 ID=46141 DF PROTO=TCP SPT=4908 DPT=8787 WINDOW=65535 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:28:44 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=118 ID=46150 DF PROTO=TCP SPT=2154 DPT=8787 WINDOW=65535 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:29:07 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=118 ID=46160 DF PROTO=TCP SPT=3904 DPT=8787 WINDOW=65535 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:29:28 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=55 ID=2652 DF PROTO=TCP SPT=1867 DPT=8787 WINDOW=64240 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:29:48 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=55 ID=2680 DF PROTO=TCP SPT=2167 DPT=7500 WINDOW=64240 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:30:07 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=118 ID=46168 DF PROTO=TCP SPT=2208 DPT=8787 WINDOW=65535 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:30:28 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=55 ID=2733 DF PROTO=TCP SPT=3938 DPT=8787 WINDOW=64240 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:30:45 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=130.250.191.108 DST=187.127.178.20 LEN=40 TOS=0x00 PREC=0x00 TTL=242 ID=28840 PROTO=TCP SPT=61081 DPT=7262 WINDOW=1024 RES=0x00 SYN URGP=0 
+=== end ===
+=== shutdown diagnostic @ SIGTERM ===
+--- date ---
+2026-06-23T07:31:03Z
+--- ps auxf (top 60 by cpu) ---
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           2  0.0  0.0      0     0 ?        S    Jun17   0:00 [kthreadd]
+root      824363  0.1  0.0      0     0 ?        I    07:09   0:01  \_ [kworker/u8:1-flush-8:0]
+root           1  0.1  0.0  23196 12388 ?        Ss   Jun17  12:03 /usr/lib/systemd/systemd --system --deserialize=60
+root      826378 73.2  0.7 435884 122980 ?       Rl   07:31   0:01 /home/khuchinque/.hermes/hermes-agent/venv/bin/python3 /home/khuchinque/.hermes/hermes-agent/venv/bin/hermes gateway run
+root      826390  0.0  0.0   6120  2164 ?        Ss   07:31   0:00  \_ timeout 5 bash -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 826378 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+root      826391  0.0  0.0   7740  3768 ?        S    07:31   0:00      \_ bash -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 826378 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+root      826393  0.0  0.0  11452  4612 ?        R    07:31   0:00          \_ ps auxf --sort=-pcpu
+root      826394  0.0  0.0   6124  2048 ?        S    07:31   0:00          \_ head -60
+--- pstree of self ---
+hermes,826378 /home/khuchinque/.hermes/hermes-agent/venv/bin/hermes gateway run
+  |-timeout,826390 5 bash -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 826378 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+  |   `-bash,826391 -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 826378 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+  |       |-head,826396 -40
+  |       `-pstree,826395 -plau 826378
+  |-{hermes},826380
+  |-{hermes},826381
+  |-{hermes},826382
+  `-{hermes},826385
+--- /proc/loadavg ---
+0.68 0.24 0.12 1/304 826397
+--- recent dmesg (oom/killed) ---
+[Tue Jun 23 07:24:24 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=118 ID=46061 DF PROTO=TCP SPT=1901 DPT=8787 WINDOW=65535 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:24:44 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=118 ID=46070 DF PROTO=TCP SPT=4887 DPT=8787 WINDOW=65535 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:25:07 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=118 ID=46080 DF PROTO=TCP SPT=5401 DPT=8787 WINDOW=65535 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:25:28 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=55 ID=2395 DF PROTO=TCP SPT=2137 DPT=7500 WINDOW=64240 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:25:48 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=55 ID=2420 DF PROTO=TCP SPT=2167 DPT=7500 WINDOW=64240 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:26:07 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=118 ID=46088 DF PROTO=TCP SPT=10196 DPT=8787 WINDOW=65535 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:26:28 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=95.214.52.198 DST=187.127.178.20 LEN=44 TOS=0x00 PREC=0x40 TTL=246 ID=22938 PROTO=TCP SPT=54506 DPT=26155 WINDOW=1025 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:26:48 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=55 ID=2492 DF PROTO=TCP SPT=1888 DPT=7500 WINDOW=64240 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:27:07 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=118 ID=46101 DF PROTO=TCP SPT=2152 DPT=8787 WINDOW=65535 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:27:24 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=118 ID=46111 DF PROTO=TCP SPT=2816 DPT=8787 WINDOW=65535 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:27:44 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=118 ID=46120 DF PROTO=TCP SPT=4908 DPT=8787 WINDOW=65535 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:28:04 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=118 ID=46131 DF PROTO=TCP SPT=2861 DPT=8787 WINDOW=65535 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:28:24 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=118 ID=46141 DF PROTO=TCP SPT=4908 DPT=8787 WINDOW=65535 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:28:44 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=118 ID=46150 DF PROTO=TCP SPT=2154 DPT=8787 WINDOW=65535 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:29:07 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=118 ID=46160 DF PROTO=TCP SPT=3904 DPT=8787 WINDOW=65535 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:29:28 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=55 ID=2652 DF PROTO=TCP SPT=1867 DPT=8787 WINDOW=64240 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:29:48 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=55 ID=2680 DF PROTO=TCP SPT=2167 DPT=7500 WINDOW=64240 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:30:07 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=118 ID=46168 DF PROTO=TCP SPT=2208 DPT=8787 WINDOW=65535 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:30:28 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=55 ID=2733 DF PROTO=TCP SPT=3938 DPT=8787 WINDOW=64240 RES=0x00 SYN URGP=0 
+[Tue Jun 23 07:30:45 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=130.250.191.108 DST=187.127.178.20 LEN=40 TOS=0x00 PREC=0x00 TTL=242 ID=28840 PROTO=TCP SPT=61081 DPT=7262 WINDOW=1024 RES=0x00 SYN URGP=0 
+=== end ===
+=== shutdown diagnostic @ SIGTERM ===
+--- date ---
+2026-06-23T08:30:43Z
+--- ps auxf (top 60 by cpu) ---
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           2  0.0  0.0      0     0 ?        S    Jun17   0:00 [kthreadd]
+root          17  0.0  0.0      0     0 ?        I    Jun17   4:38  \_ [rcu_preempt]
+root           1  0.1  0.0  23196 12396 ?        Ss   Jun17  12:06 /usr/lib/systemd/systemd --system --deserialize=60
+root      830936 66.6  0.0  19928  9744 ?        Rs   08:30   0:00 (fwupdmgr)
+--- pstree of self ---
+hermes,827097 -m hermes_cli.main gateway run
+  |-timeout,830939 5 bash -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 827097 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+  |   `-bash,830940 -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 827097 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+  |       |-head,830945 -40
+  |       `-pstree,830944 -plau 827097
+  |-{hermes},827099
+  |-{hermes},827100
+  |-{hermes},827101
+  |-{hermes},827104
+  |-{hermes},827108
+  |-{hermes},827109
+  |-{hermes},827110
+  |-{hermes},827155
+  |-{hermes},828306
+  |-{hermes},828307
+  |-{hermes},828308
+  |-{hermes},830861
+  `-{hermes},830869
+--- /proc/loadavg ---
+0.10 0.20 0.19 2/336 830951
+--- recent dmesg (oom/killed) ---
+[Tue Jun 23 08:25:04 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=118 ID=47380 DF PROTO=TCP SPT=2124 DPT=8787 WINDOW=65535 RES=0x00 SYN URGP=0 
+[Tue Jun 23 08:25:24 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=118 ID=47391 DF PROTO=TCP SPT=1880 DPT=8787 WINDOW=65535 RES=0x00 SYN URGP=0 
+[Tue Jun 23 08:25:44 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=118 ID=47400 DF PROTO=TCP SPT=2128 DPT=8787 WINDOW=65535 RES=0x00 SYN URGP=0 
+[Tue Jun 23 08:26:05 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=118 ID=47411 DF PROTO=TCP SPT=2202 DPT=8787 WINDOW=65535 RES=0x00 SYN URGP=0 
+[Tue Jun 23 08:26:24 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=118 ID=47421 DF PROTO=TCP SPT=1864 DPT=8787 WINDOW=65535 RES=0x00 SYN URGP=0 
+[Tue Jun 23 08:26:44 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=118 ID=47430 DF PROTO=TCP SPT=2872 DPT=8787 WINDOW=65535 RES=0x00 SYN URGP=0 
+[Tue Jun 23 08:27:04 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=118 ID=52972 DF PROTO=TCP SPT=2864 DPT=9500 WINDOW=64240 RES=0x00 SYN URGP=0 
+[Tue Jun 23 08:27:28 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=55 ID=6526 DF PROTO=TCP SPT=4917 DPT=8787 WINDOW=64240 RES=0x00 SYN URGP=0 
+[Tue Jun 23 08:27:48 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=55 ID=6534 DF PROTO=TCP SPT=3912 DPT=7500 WINDOW=64240 RES=0x00 SYN URGP=0 
+[Tue Jun 23 08:27:50 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:86:dd SRC=2a06:4880:2000:0000:0000:0000:0000:0030 DST=2a02:4780:0063:59af:0000:0000:0000:0001 LEN=64 TC=40 HOPLIMIT=244 FLOWLBL=801258 PROTO=TCP SPT=38603 DPT=58080 WINDOW=14600 RES=0x00 SYN URGP=0 
+[Tue Jun 23 08:28:04 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=118 ID=47447 DF PROTO=TCP SPT=3948 DPT=8787 WINDOW=65535 RES=0x00 SYN URGP=0 
+[Tue Jun 23 08:28:28 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=55 ID=6569 DF PROTO=TCP SPT=1910 DPT=7500 WINDOW=64240 RES=0x00 SYN URGP=0 
+[Tue Jun 23 08:28:48 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=55 ID=6579 DF PROTO=TCP SPT=2122 DPT=7500 WINDOW=64240 RES=0x00 SYN URGP=0 
+[Tue Jun 23 08:29:04 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=118 ID=47460 DF PROTO=TCP SPT=2842 DPT=8787 WINDOW=65535 RES=0x00 SYN URGP=0 
+[Tue Jun 23 08:29:24 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=118 ID=47471 DF PROTO=TCP SPT=3939 DPT=8787 WINDOW=65535 RES=0x00 SYN URGP=0 
+[Tue Jun 23 08:29:44 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=118 ID=47480 DF PROTO=TCP SPT=1866 DPT=8787 WINDOW=65535 RES=0x00 SYN URGP=0 
+[Tue Jun 23 08:30:05 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=118 ID=47491 DF PROTO=TCP SPT=1903 DPT=8787 WINDOW=65535 RES=0x00 SYN URGP=0 
+[Tue Jun 23 08:30:24 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=118 ID=47501 DF PROTO=TCP SPT=4971 DPT=8787 WINDOW=65535 RES=0x00 SYN URGP=0 
+[Tue Jun 23 08:30:38 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:86:dd SRC=2a06:4880:2000:0000:0000:0000:0000:002a DST=2a02:4780:0063:59af:0000:0000:0000:0001 LEN=64 TC=40 HOPLIMIT=243 FLOWLBL=114990 PROTO=TCP SPT=47752 DPT=10444 WINDOW=14600 RES=0x00 SYN URGP=0 
+[Tue Jun 23 08:30:44 2026] [UFW BLOCK] IN=eth0 OUT= MAC=c8:e8:d4:bf:8a:66:44:38:39:ff:ff:41:08:00 SRC=103.206.79.24 DST=187.127.178.20 LEN=52 TOS=0x00 PREC=0x00 TTL=118 ID=47510 DF PROTO=TCP SPT=4871 DPT=8787 WINDOW=65535 RES=0x00 SYN URGP=0 
+=== end ===
+=== shutdown diagnostic @ SIGTERM ===
+--- date ---
+2026-06-23T08:38:58Z
+--- ps auxf (top 60 by cpu) ---
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           2  0.0  0.0      0     0 ?        S    Jun17   0:00 [kthreadd]
+root          17  0.0  0.0      0     0 ?        I    Jun17   4:38  \_ [rcu_preempt]
+root           1  0.1  0.0  23196 12396 ?        Ss   Jun17  12:06 /usr/lib/systemd/systemd --system --deserialize=60
+khuchin+  830985  0.4  0.7 507152 120124 ?       Rsl  08:30   0:02 /home/khuchinque/.hermes/hermes-agent/venv/bin/python3 -m hermes_cli.main gateway run
+khuchin+  831336  0.0  0.0   6120  2172 ?        Ss   08:38   0:00  \_ timeout 5 bash -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 830985 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+khuchin+  831337  0.0  0.0   7740  3628 ?        S    08:38   0:00      \_ bash -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 830985 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+khuchin+  831339  0.0  0.0  11452  4560 ?        R    08:38   0:00          \_ ps auxf --sort=-pcpu
+khuchin+  831340  0.0  0.0   6124  2048 ?        S    08:38   0:00          \_ head -60
+root      818415  0.1  3.2 1030152 534452 ?      Ssl  06:22   0:15 /root/webui-hermes/.venv/bin/python /root/webui-hermes/server.py
+redis     625361  0.1  0.0  67904 13764 ?        Ssl  Jun21   4:01 /usr/bin/redis-server 127.0.0.1:6379
+--- pstree of self ---
+hermes,830985,khuchinque -m hermes_cli.main gateway run
+  |-timeout,831336 5 bash -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 830985 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+  |   `-bash,831337 -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 830985 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+  |       |-head,831342 -40
+  |       `-pstree,831341 -plau 830985
+  |-{hermes},830987
+  |-{hermes},830988
+  |-{hermes},830989
+  |-{hermes},830993
+  `-{hermes},830994
+--- /proc/loadavg ---
+0.13 0.14 0.16 3/323 831343
+--- recent dmesg (oom/killed) ---
+=== end ===
+=== shutdown diagnostic @ SIGTERM ===
+--- date ---
+2026-06-23T08:56:12Z
+--- ps auxf (top 60 by cpu) ---
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           2  0.0  0.0      0     0 ?        S    Jun17   0:00 [kthreadd]
+root          17  0.0  0.0      0     0 ?        I    Jun17   4:39  \_ [rcu_preempt]
+root           1  0.1  0.0  23196 12396 ?        Ss   Jun17  12:06 /usr/lib/systemd/systemd --system --deserialize=60
+khuchin+  831348  0.4  0.9 741320 160196 ?       Ssl  08:38   0:04 /home/khuchinque/.hermes/hermes-agent/venv/bin/python3 -m hermes_cli.main gateway run
+khuchin+  832480  0.0  0.0   6120  2172 ?        Ss   08:56   0:00  \_ timeout 5 bash -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 831348 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+khuchin+  832481  0.0  0.0   7740  3564 ?        S    08:56   0:00      \_ bash -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 831348 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+khuchin+  832483  100  0.0  11452  4536 ?        R    08:56   0:00          \_ ps auxf --sort=-pcpu
+root      818415  0.1  3.2 1030152 534452 ?      Ssl  06:22   0:16 /root/webui-hermes/.venv/bin/python /root/webui-hermes/server.py
+redis     625361  0.1  0.0  67904 13764 ?        Ssl  Jun21   4:02 /usr/bin/redis-server 127.0.0.1:6379
+--- pstree of self ---
+hermes,831348,khuchinque -m hermes_cli.main gateway run
+  |-timeout,832480 5 bash -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 831348 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+  |   `-bash,832481 -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 831348 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+  |       |-head,832487 -40
+  |       `-pstree,832486 -plau 831348
+  |-{hermes},832462
+  |-{hermes},832465
+  `-{hermes},832472
+--- /proc/loadavg ---
+0.36 0.34 0.25 1/320 832488
+--- recent dmesg (oom/killed) ---
+=== end ===
+=== shutdown diagnostic @ SIGTERM ===
+--- date ---
+2026-06-23T10:06:00Z
+--- ps auxf (top 60 by cpu) ---
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           2  0.0  0.0      0     0 ?        S    Jun17   0:00 [kthreadd]
+root          17  0.0  0.0      0     0 ?        I    Jun17   4:42  \_ [rcu_preempt]
+root           1  0.1  0.0  23108 12424 ?        Ss   Jun17  12:12 /usr/lib/systemd/systemd --system --deserialize=60
+khuchin+  832509  0.7  1.1 989048 194456 ?       Ssl  08:56   0:31 /home/khuchinque/.hermes/hermes-agent/venv/bin/python3 -m hermes_cli.main gateway run
+khuchin+  839941  0.0  0.0   6120  2164 ?        Ss   10:05   0:00  \_ timeout 5 bash -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 832509 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+khuchin+  839942  0.0  0.0   7740  3572 ?        S    10:05   0:00      \_ bash -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 832509 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+khuchin+  839944  0.0  0.0  11452  4560 ?        R    10:05   0:00          \_ ps auxf --sort=-pcpu
+khuchin+  839945  0.0  0.0   6124  2044 ?        S    10:05   0:00          \_ head -60
+root      838673  0.4  1.7 637480 283944 ?       Ssl  09:53   0:03 /root/webui-hermes/.venv/bin/python /root/webui-hermes/server.py
+--- pstree of self ---
+hermes,832509,khuchinque -m hermes_cli.main gateway run
+  |-timeout,839941 5 bash -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 832509 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+  |   `-bash,839942 -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 832509 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+  |       |-head,839950 -40
+  |       `-pstree,839949 -plau 832509
+  |-{hermes},832511
+  |-{hermes},832512
+  |-{hermes},832513
+  |-{hermes},832516
+  |-{hermes},832520
+  |-{hermes},832521
+  |-{hermes},832594
+  `-{hermes},833334
+--- /proc/loadavg ---
+0.08 0.17 0.17 2/457 839953
+--- recent dmesg (oom/killed) ---
+=== end ===
+=== shutdown diagnostic @ SIGTERM ===
+--- date ---
+2026-06-23T10:06:19Z
+--- ps auxf (top 60 by cpu) ---
+=== shutdown diagnostic @ SIGTERM ===
+--- date ---
+2026-06-23T10:06:19Z
+--- ps auxf (top 60 by cpu) ---
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           2  0.0  0.0      0     0 ?        S    Jun17   0:00 [kthreadd]
+root          17  0.0  0.0      0     0 ?        I    Jun17   4:42  \_ [rcu_preempt]
+root           1  0.1  0.0  23108 12424 ?        Ss   Jun17  12:12 /usr/lib/systemd/systemd --system --deserialize=60
+khuchin+  839984 25.8  1.0 830868 168088 ?       Ssl  10:06   0:03 /home/khuchinque/.hermes/hermes-agent/venv/bin/python3 -m hermes_cli.main gateway run
+khuchin+  840065  0.0  0.0   6120  2172 ?        Ss   10:06   0:00  \_ timeout 5 bash -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 839984 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+khuchin+  840066  0.0  0.0   7740  3620 ?        S    10:06   0:00      \_ bash -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 839984 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+khuchin+  840068  0.0  0.0  11452  4584 ?        R    10:06   0:00          \_ ps auxf --sort=-pcpu
+khuchin+  840069  0.0  0.0   6124  2052 ?        S    10:06   0:00          \_ head -60
+--- pstree of self ---
+hermes,839984,khuchinque -m hermes_cli.main gateway run
+  |-timeout,840065 5 bash -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 839984 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+  |   `-bash,840066 -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 839984 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+  |       |-head,840071 -40
+  |       `-pstree,840070 -plau 839984
+  |-{hermes},839988
+  |-{hermes},839989
+  |-{hermes},839990
+  |-{hermes},839993
+  |-{hermes},839995
+  |-{hermes},839996
+  |-{hermes},839997
+  |-{hermes},840002
+  `-{hermes},840007
+--- /proc/loadavg ---
+0.13 0.17 0.17 1/458 840072
+--- recent dmesg (oom/killed) ---
+=== end ===
+=== shutdown diagnostic @ SIGTERM ===
+--- date ---
+2026-06-27T14:55:49Z
+--- ps auxf (top 60 by cpu) ---
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           2  0.0  0.0      0     0 ?        S    Jun26   0:00 [kthreadd]
+root      136744  0.0  0.0      0     0 ?        I    13:59   0:00  \_ [kworker/u8:1-events_unbound]
+root          17  0.0  0.0      0     0 ?        I    Jun26   0:15  \_ [rcu_preempt]
+root           1  0.2  0.0  23388 14744 ?        Ss   Jun26   1:57 /sbin/init
+root        1169  0.1  0.9 3206708 160620 ?      Ssl  Jun26   1:23 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+root        1892  0.0  0.0 1673376 5372 ?        Sl   Jun26   0:00  \_ /usr/bin/docker-proxy -proto tcp -host-ip :: -host-port 2202 -container-ip 172.26.2.2 -container-port 22 -use-listen-fd
+root         951  0.1  0.3 2094296 59960 ?       Ssl  Jun26   1:20 /usr/bin/containerd
+--- pstree of self ---
+hermes,151190,khuchinque -m hermes_cli.main gateway run
+  |-timeout,152234 5 bash -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 151190 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+  |   `-bash,152235 -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 151190 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+  |       |-head,152240 -40
+  |       `-pstree,152239 -plau 151190
+  |-{hermes},151198
+  |-{hermes},151199
+  |-{hermes},151200
+  |-{hermes},151202
+  |-{hermes},151210
+  |-{hermes},151211
+  `-{hermes},151212
+--- /proc/loadavg ---
+0.03 0.08 0.08 1/462 152241
+--- recent dmesg (oom/killed) ---
+=== end ===
+=== shutdown diagnostic @ SIGTERM ===
+--- date ---
+2026-06-27T15:17:29Z
+--- ps auxf (top 60 by cpu) ---
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           2  0.0  0.0      0     0 ?        S    Jun26   0:00 [kthreadd]
+root          17  0.0  0.0      0     0 ?        I    Jun26   0:15  \_ [rcu_preempt]
+root           1  0.2  0.0  23388 14744 ?        Ss   Jun26   1:59 /sbin/init
+root        1169  0.1  0.9 3206708 160632 ?      Ssl  Jun26   1:25 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+root        1892  0.0  0.0 1673376 5372 ?        Sl   Jun26   0:00  \_ /usr/bin/docker-proxy -proto tcp -host-ip :: -host-port 2202 -container-ip 172.26.2.2 -container-port 22 -use-listen-fd
+root         951  0.1  0.3 2094296 60072 ?       Ssl  Jun26   1:22 /usr/bin/containerd
+--- pstree of self ---
+hermes,152251,khuchinque -m hermes_cli.main gateway run
+  |-timeout,156879 5 bash -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 152251 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+  |   `-bash,156880 -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 152251 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+  |       |-head,156885 -40
+  |       `-pstree,156884 -plau 152251
+  |-{hermes},152256
+  |-{hermes},152257
+  |-{hermes},152258
+  |-{hermes},152260
+  |-{hermes},152261
+  |-{hermes},152284
+  |-{hermes},152285
+  `-{hermes},152492
+--- /proc/loadavg ---
+0.08 0.09 0.09 1/465 156886
+--- recent dmesg (oom/killed) ---
+=== end ===
+=== shutdown diagnostic @ SIGTERM ===
+--- date ---
+2026-06-27T15:56:07Z
+--- ps auxf (top 60 by cpu) ---
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           2  0.0  0.0      0     0 ?        S    Jun26   0:00 [kthreadd]
+root          17  0.0  0.0      0     0 ?        I    Jun26   0:16  \_ [rcu_preempt]
+root      166381  0.0  0.0      0     0 ?        I    15:51   0:00  \_ [kworker/u8:2-writeback]
+root           1  0.2  0.0  23396 14744 ?        Ss   Jun26   2:05 /sbin/init
+root        1169  0.1  0.9 3206708 160648 ?      Ssl  Jun26   1:29 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+root        1892  0.0  0.0 1673376 5372 ?        Sl   Jun26   0:00  \_ /usr/bin/docker-proxy -proto tcp -host-ip :: -host-port 2202 -container-ip 172.26.2.2 -container-port 22 -use-listen-fd
+root         951  0.1  0.3 2094296 64276 ?       Ssl  Jun26   1:25 /usr/bin/containerd
+redis        896  0.1  0.0  65344 13440 ?        Ssl  Jun26   1:22 /usr/bin/redis-server 127.0.0.1:6379
+--- pstree of self ---
+hermes,156891,khuchinque -m hermes_cli.main gateway run
+  |-timeout,167765 5 bash -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 156891 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+  |   `-bash,167766 -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 156891 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+  |       |-head,167771 -40
+  |       `-pstree,167770 -plau 156891
+  |-{hermes},156900
+  |-{hermes},156901
+  |-{hermes},156902
+  |-{hermes},156904
+  |-{hermes},156906
+  |-{hermes},156907
+  |-{hermes},157109
+  `-{hermes},157118
+--- /proc/loadavg ---
+0.12 0.14 0.10 1/473 167772
+--- recent dmesg (oom/killed) ---
+=== end ===
+=== shutdown diagnostic @ SIGTERM ===
+--- date ---
+2026-06-27T16:01:43Z
+--- ps auxf (top 60 by cpu) ---
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           2  0.0  0.0      0     0 ?        S    Jun26   0:00 [kthreadd]
+root          17  0.0  0.0      0     0 ?        I    Jun26   0:16  \_ [rcu_preempt]
+root           1  0.2  0.0  23400 14704 ?        Ss   Jun26   2:07 /sbin/init
+root        1169  0.1  0.9 3206708 160648 ?      Ssl  Jun26   1:29 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+root        1892  0.0  0.0 1673376 5372 ?        Sl   Jun26   0:00  \_ /usr/bin/docker-proxy -proto tcp -host-ip :: -host-port 2202 -container-ip 172.26.2.2 -container-port 22 -use-listen-fd
+--- pstree of self ---
+hermes,167804,khuchinque -m hermes_cli.main gateway run
+  |-timeout,169681 5 bash -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 167804 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+  |   `-bash,169682 -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 167804 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+  |       |-head,169687 -40
+  |       `-pstree,169686 -plau 167804
+  |-{hermes},167908
+  |-{hermes},167909
+  |-{hermes},167910
+  |-{hermes},167912
+  |-{hermes},167934
+  |-{hermes},167935
+  |-{hermes},167936
+  `-{hermes},168002
+--- /proc/loadavg ---
+0.16 0.12 0.09 1/480 169688
+--- recent dmesg (oom/killed) ---
+=== end ===
+=== shutdown diagnostic @ SIGTERM ===
+--- date ---
+2026-06-27T16:07:29Z
+--- ps auxf (top 60 by cpu) ---
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           2  0.0  0.0      0     0 ?        S    Jun26   0:00 [kthreadd]
+root          17  0.0  0.0      0     0 ?        I    Jun26   0:16  \_ [rcu_preempt]
+root           1  0.2  0.0  23400 14704 ?        Ss   Jun26   2:08 /sbin/init
+root        1169  0.1  0.9 3206708 160660 ?      Ssl  Jun26   1:30 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+root        1892  0.0  0.0 1673376 5372 ?        Sl   Jun26   0:00  \_ /usr/bin/docker-proxy -proto tcp -host-ip :: -host-port 2202 -container-ip 172.26.2.2 -container-port 22 -use-listen-fd
+--- pstree of self ---
+hermes,169693,khuchinque -m hermes_cli.main gateway run
+  |-timeout,171297 5 bash -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 169693 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+  |   `-bash,171300 -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 169693 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+  |       |-head,171311 -40
+  |       `-pstree,171310 -plau 169693
+  |-{hermes},169697
+  |-{hermes},169698
+  |-{hermes},169699
+  |-{hermes},169701
+  |-{hermes},169708
+  |-{hermes},169709
+  `-{hermes},169939
+--- /proc/loadavg ---
+0.11 0.20 0.14 7/521 171322
+--- recent dmesg (oom/killed) ---
+=== end ===
+=== shutdown diagnostic @ SIGTERM ===
+--- date ---
+2026-06-27T16:15:36Z
+--- ps auxf (top 60 by cpu) ---
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           2  0.0  0.0      0     0 ?        S    Jun26   0:00 [kthreadd]
+root          17  0.0  0.0      0     0 ?        I    Jun26   0:16  \_ [rcu_preempt]
+root           1  0.2  0.0  23400 14708 ?        Ss   Jun26   2:09 /sbin/init
+khuchin+  174089  200  0.1 221768 27436 ?        Rs   16:15   0:00 /usr/bin/php -S 0.0.0.0:7500
+--- pstree of self ---
+hermes,171448,khuchinque -m hermes_cli.main gateway run
+  |-timeout,174093 5 bash -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 171448 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+  |   `-bash,174094 -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 171448 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+  |       |-head,174099 -40
+  |       `-pstree,174098 -plau 171448
+  |-{hermes},171453
+  |-{hermes},171454
+  |-{hermes},171455
+  |-{hermes},171489
+  |-{hermes},171491
+  |-{hermes},171537
+  |-{hermes},171538
+  `-{hermes},171539
+--- /proc/loadavg ---
+0.17 0.15 0.14 1/476 174101
+--- recent dmesg (oom/killed) ---
+=== end ===
+=== shutdown diagnostic @ SIGTERM ===
+--- date ---
+2026-06-27T16:24:48Z
+--- ps auxf (top 60 by cpu) ---
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           2  0.0  0.0      0     0 ?        S    Jun26   0:00 [kthreadd]
+root      170020  0.0  0.0      0     0 ?        I    16:03   0:00  \_ [kworker/u8:1-writeback]
+root          17  0.0  0.0      0     0 ?        I    Jun26   0:16  \_ [rcu_preempt]
+root           1  0.2  0.0  23400 14712 ?        Ss   Jun26   2:11 /sbin/init
+root        1169  0.1  0.9 3206708 160660 ?      Ssl  Jun26   1:31 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+root        1892  0.0  0.0 1673376 5372 ?        Sl   Jun26   0:00  \_ /usr/bin/docker-proxy -proto tcp -host-ip :: -host-port 2202 -container-ip 172.26.2.2 -container-port 22 -use-listen-fd
+root         951  0.1  0.3 2094296 58364 ?       Ssl  Jun26   1:27 /usr/bin/containerd
+--- pstree of self ---
+hermes,174227,khuchinque -m hermes_cli.main gateway run
+  |-timeout,176659 5 bash -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 174227 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+  |   `-bash,176660 -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 174227 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+  |       |-head,176665 -40
+  |       `-pstree,176664 -plau 174227
+  |-{hermes},174237
+  |-{hermes},174238
+  |-{hermes},174239
+  |-{hermes},174241
+  |-{hermes},174244
+  |-{hermes},174245
+  |-{hermes},174575
+  `-{hermes},174891
+--- /proc/loadavg ---
+0.03 0.05 0.08 1/483 176666
+--- recent dmesg (oom/killed) ---
+=== end ===
+=== shutdown diagnostic @ SIGTERM ===
+--- date ---
+2026-06-27T16:25:41Z
+--- ps auxf (top 60 by cpu) ---
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           2  0.0  0.0      0     0 ?        S    Jun26   0:00 [kthreadd]
+root      170020  0.0  0.0      0     0 ?        I    16:03   0:00  \_ [kworker/u8:1-events_unbound]
+root          17  0.0  0.0      0     0 ?        I    Jun26   0:16  \_ [rcu_preempt]
+root           1  0.2  0.0  23400 14712 ?        Ss   Jun26   2:11 /sbin/init
+khuchin+  176974 25.0  0.0  17264  7092 ?        Ss   16:25   0:00 systemd-stdio-bridge -punix:path=/run/user/1000/bus
+khuchin+  176975  0.0  0.0  21320  3708 ?        S    16:25   0:00  \_ (sd-pam)
+--- pstree of self ---
+hermes,176758,khuchinque -m hermes_cli.main gateway run
+  |-timeout,176976 5 bash -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 176758 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+  |   `-bash,176977 -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 176758 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+  |       |-head,176982 -40
+  |       `-pstree,176981 -plau 176758
+  |-{hermes},176804
+  |-{hermes},176805
+  |-{hermes},176806
+  |-{hermes},176808
+  |-{hermes},176838
+  |-{hermes},176839
+  |-{hermes},176840
+  `-{hermes},176878
+--- /proc/loadavg ---
+0.05 0.06 0.08 1/483 176983
+--- recent dmesg (oom/killed) ---
+=== end ===
+=== shutdown diagnostic @ SIGTERM ===
+--- date ---
+2026-06-27T16:26:24Z
+--- ps auxf (top 60 by cpu) ---
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           2  0.0  0.0      0     0 ?        S    Jun26   0:00 [kthreadd]
+root      170020  0.0  0.0      0     0 ?        I    16:03   0:00  \_ [kworker/u8:1-events_unbound]
+root          17  0.0  0.0      0     0 ?        I    Jun26   0:16  \_ [rcu_preempt]
+root           1  0.2  0.0  23400 14716 ?        Ss   Jun26   2:11 /sbin/init
+root      177414  0.2  0.1 373096 21036 ?        Ssl  16:26   0:00 /usr/libexec/packagekitd
+--- pstree of self ---
+hermes,176988,khuchinque -m hermes_cli.main gateway run
+  |-timeout,177515 5 bash -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 176988 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+  |   `-bash,177516 -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 176988 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+  |       |-head,177521 -40
+  |       `-pstree,177520 -plau 176988
+  |-{hermes},177031
+  |-{hermes},177032
+  |-{hermes},177033
+  |-{hermes},177035
+  |-{hermes},177043
+  |-{hermes},177044
+  `-{hermes},177121
+--- /proc/loadavg ---
+0.19 0.09 0.10 1/487 177522
+--- recent dmesg (oom/killed) ---
+=== end ===
+=== shutdown diagnostic @ SIGTERM ===
+--- date ---
+2026-06-27T17:00:37Z
+--- ps auxf (top 60 by cpu) ---
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           2  0.0  0.0      0     0 ?        S    Jun26   0:00 [kthreadd]
+root      182818  0.0  0.0      0     0 ?        I    16:46   0:00  \_ [kworker/u8:1-flush-8:0]
+root           1  0.2  0.0  23288 14716 ?        Ss   Jun26   2:16 /sbin/init
+root        1169  0.1  0.9 3206708 160672 ?      Ssl  Jun26   1:34 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+root        1892  0.0  0.0 1673376 5372 ?        Sl   Jun26   0:00  \_ /usr/bin/docker-proxy -proto tcp -host-ip :: -host-port 2202 -container-ip 172.26.2.2 -container-port 22 -use-listen-fd
+root         951  0.1  0.3 2094296 58348 ?       Ssl  Jun26   1:30 /usr/bin/containerd
+--- pstree of self ---
+hermes,187752,khuchinque -m hermes_cli.main gateway run
+  |-timeout,188221 5 bash -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 187752 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+  |   `-bash,188222 -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 187752 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+  |       |-head,188227 -40
+  |       `-pstree,188226 -plau 187752
+  |-{hermes},187760
+  |-{hermes},187761
+  |-{hermes},187762
+  |-{hermes},187764
+  |-{hermes},187769
+  |-{hermes},187770
+  `-{hermes},187771
+--- /proc/loadavg ---
+0.67 0.37 0.21 2/501 188228
+--- recent dmesg (oom/killed) ---
+=== end ===
+=== shutdown diagnostic @ SIGTERM ===
+--- date ---
+2026-06-27T17:00:50Z
+--- ps auxf (top 60 by cpu) ---
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           2  0.0  0.0      0     0 ?        S    Jun26   0:00 [kthreadd]
+root      182818  0.0  0.0      0     0 ?        I    16:46   0:00  \_ [kworker/u8:1-flush-8:0]
+root           1  0.2  0.0  23288 14716 ?        Ss   Jun26   2:16 /sbin/init
+root        1169  0.1  0.9 3206708 160672 ?      Ssl  Jun26   1:34 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+root        1892  0.0  0.0 1673376 5372 ?        Sl   Jun26   0:00  \_ /usr/bin/docker-proxy -proto tcp -host-ip :: -host-port 2202 -container-ip 172.26.2.2 -container-port 22 -use-listen-fd
+root         951  0.1  0.3 2094296 58348 ?       Ssl  Jun26   1:30 /usr/bin/containerd
+--- pstree of self ---
+hermes,188186,khuchinque -m hermes_cli.main gateway run --replace
+  |-timeout,188285 5 bash -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 188186 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+  |   `-bash,188286 -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 188186 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+  |       |-head,188291 -40
+  |       `-pstree,188290 -plau 188186
+  |-{hermes},188239
+  |-{hermes},188240
+  |-{hermes},188241
+  |-{hermes},188242
+  |-{hermes},188248
+  `-{hermes},188249
+--- /proc/loadavg ---
+0.75 0.41 0.23 2/499 188292
+--- recent dmesg (oom/killed) ---
+=== end ===
+=== shutdown diagnostic @ SIGTERM ===
+--- date ---
+2026-06-27T17:06:18Z
+--- ps auxf (top 60 by cpu) ---
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           2  0.0  0.0      0     0 ?        S    Jun26   0:00 [kthreadd]
+root      182818  0.0  0.0      0     0 ?        I    16:46   0:00  \_ [kworker/u8:1-events_power_efficient]
+root           1  0.2  0.0  23288 14716 ?        Ss   Jun26   2:17 /sbin/init
+root        1169  0.1  0.9 3206708 160672 ?      Ssl  Jun26   1:35 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+root        1892  0.0  0.0 1673376 5372 ?        Sl   Jun26   0:00  \_ /usr/bin/docker-proxy -proto tcp -host-ip :: -host-port 2202 -container-ip 172.26.2.2 -container-port 22 -use-listen-fd
+root         951  0.1  0.3 2094296 58448 ?       Ssl  Jun26   1:30 /usr/bin/containerd
+redis        896  0.1  0.0  65344 13440 ?        Ssl  Jun26   1:28 /usr/bin/redis-server 127.0.0.1:6379
+--- pstree of self ---
+hermes,188314,khuchinque -m hermes_cli.main gateway run
+  |-timeout,190288 5 bash -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 188314 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+  |   `-bash,190289 -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 188314 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+  |       |-head,190295 -40
+  |       `-pstree,190294 -plau 188314
+  |-{hermes},188323
+  |-{hermes},188324
+  |-{hermes},188327
+  |-{hermes},188329
+  |-{hermes},188333
+  |-{hermes},188334
+  `-{hermes},188673
+--- /proc/loadavg ---
+0.54 0.61 0.39 2/493 190296
+--- recent dmesg (oom/killed) ---
+=== end ===
+=== shutdown diagnostic @ SIGTERM ===
+--- date ---
+2026-06-27T17:08:15Z
+--- ps auxf (top 60 by cpu) ---
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           2  0.0  0.0      0     0 ?        S    Jun26   0:00 [kthreadd]
+root      182818  0.0  0.0      0     0 ?        I    16:46   0:00  \_ [kworker/u8:1-events_power_efficient]
+root      179670  0.0  0.0      0     0 ?        I    16:34   0:00  \_ [kworker/u8:2-events_power_efficient]
+root          17  0.0  0.0      0     0 ?        I    Jun26   0:17  \_ [rcu_preempt]
+root           1  0.2  0.0  23288 14716 ?        Ss   Jun26   2:17 /sbin/init
+root        1169  0.1  0.9 3206708 160672 ?      Ssl  Jun26   1:35 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+root        1892  0.0  0.0 1673376 5372 ?        Sl   Jun26   0:00  \_ /usr/bin/docker-proxy -proto tcp -host-ip :: -host-port 2202 -container-ip 172.26.2.2 -container-port 22 -use-listen-fd
+root         951  0.1  0.3 2094296 58288 ?       Ssl  Jun26   1:30 /usr/bin/containerd
+redis        896  0.1  0.0  65344 13440 ?        Ssl  Jun26   1:28 /usr/bin/redis-server 127.0.0.1:6379
+--- pstree of self ---
+hermes,190340,khuchinque -m hermes_cli.main gateway run
+  |-timeout,190928 5 bash -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 190340 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+  |   `-bash,190929 -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 190340 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+  |       |-head,190934 -40
+  |       `-pstree,190933 -plau 190340
+  |-{hermes},190416
+  |-{hermes},190417
+  |-{hermes},190418
+  |-{hermes},190420
+  |-{hermes},190426
+  |-{hermes},190427
+  `-{hermes},190745
+--- /proc/loadavg ---
+0.11 0.42 0.34 1/496 190935
+--- recent dmesg (oom/killed) ---
+=== end ===
+=== shutdown diagnostic @ SIGTERM ===
+--- date ---
+2026-06-27T17:09:10Z
+--- ps auxf (top 60 by cpu) ---
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           2  0.0  0.0      0     0 ?        S    Jun26   0:00 [kthreadd]
+root      182818  0.0  0.0      0     0 ?        I    16:46   0:00  \_ [kworker/u8:1-flush-8:0]
+root      179670  0.0  0.0      0     0 ?        I    16:34   0:00  \_ [kworker/u8:2-events_power_efficient]
+root          17  0.0  0.0      0     0 ?        I    Jun26   0:17  \_ [rcu_preempt]
+root           1  0.2  0.0  23288 14716 ?        Ss   Jun26   2:17 /sbin/init
+root        1169  0.1  0.9 3206708 160672 ?      Ssl  Jun26   1:35 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+root        1892  0.0  0.0 1673376 5372 ?        Sl   Jun26   0:00  \_ /usr/bin/docker-proxy -proto tcp -host-ip :: -host-port 2202 -container-ip 172.26.2.2 -container-port 22 -use-listen-fd
+root         951  0.1  0.3 2094296 58328 ?       Ssl  Jun26   1:30 /usr/bin/containerd
+redis        896  0.1  0.0  65344 13440 ?        Ssl  Jun26   1:28 /usr/bin/redis-server 127.0.0.1:6379
+--- pstree of self ---
+hermes,190970,khuchinque -m hermes_cli.main gateway run
+  |-timeout,191327 5 bash -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 190970 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+  |   `-bash,191328 -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 190970 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+  |       |-head,191333 -40
+  |       `-pstree,191332 -plau 190970
+  |-{hermes},190975
+  |-{hermes},190976
+  |-{hermes},190977
+  |-{hermes},190979
+  |-{hermes},190993
+  |-{hermes},190994
+  |-{hermes},190995
+  `-{hermes},191089
+--- /proc/loadavg ---
+0.17 0.39 0.34 1/498 191334
+--- recent dmesg (oom/killed) ---
+=== end ===
+=== shutdown diagnostic @ SIGTERM ===
+--- date ---
+2026-06-27T17:10:24Z
+--- ps auxf (top 60 by cpu) ---
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           2  0.0  0.0      0     0 ?        S    Jun26   0:00 [kthreadd]
+root      182818  0.0  0.0      0     0 ?        I    16:46   0:00  \_ [kworker/u8:1-events_power_efficient]
+root      179670  0.0  0.0      0     0 ?        I    16:34   0:00  \_ [kworker/u8:2-events_power_efficient]
+root          17  0.0  0.0      0     0 ?        I    Jun26   0:17  \_ [rcu_preempt]
+root           1  0.2  0.0  23288 14716 ?        Ss   Jun26   2:17 /sbin/init
+root        1169  0.1  0.9 3206708 160672 ?      Ssl  Jun26   1:35 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+root        1892  0.0  0.0 1673376 5372 ?        Sl   Jun26   0:00  \_ /usr/bin/docker-proxy -proto tcp -host-ip :: -host-port 2202 -container-ip 172.26.2.2 -container-port 22 -use-listen-fd
+root         951  0.1  0.3 2094296 58332 ?       Ssl  Jun26   1:31 /usr/bin/containerd
+redis        896  0.1  0.0  65344 13440 ?        Ssl  Jun26   1:28 /usr/bin/redis-server 127.0.0.1:6379
+--- pstree of self ---
+hermes,191348,khuchinque -m hermes_cli.main gateway run
+  |-timeout,191848 5 bash -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 191348 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+  |   `-bash,191849 -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 191348 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+  |       |-head,191854 -40
+  |       `-pstree,191853 -plau 191348
+  |-{hermes},191377
+  |-{hermes},191378
+  |-{hermes},191379
+  |-{hermes},191381
+  |-{hermes},191389
+  |-{hermes},191390
+  |-{hermes},191391
+  |-{hermes},191835
+  |-{hermes},191836
+  `-{hermes},191837
+--- /proc/loadavg ---
+0.23 0.37 0.34 1/498 191855
+--- recent dmesg (oom/killed) ---
+=== end ===
+=== shutdown diagnostic @ SIGTERM ===
+--- date ---
+2026-06-27T17:11:15Z
+--- ps auxf (top 60 by cpu) ---
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           2  0.0  0.0      0     0 ?        S    Jun26   0:00 [kthreadd]
+root      182818  0.0  0.0      0     0 ?        I    16:46   0:00  \_ [kworker/u8:1-events_power_efficient]
+root      179670  0.0  0.0      0     0 ?        I    16:34   0:00  \_ [kworker/u8:2-flush-8:0]
+root          17  0.0  0.0      0     0 ?        I    Jun26   0:17  \_ [rcu_preempt]
+root           1  0.2  0.0  23288 14716 ?        Ss   Jun26   2:17 /sbin/init
+root        1169  0.1  0.9 3206708 160672 ?      Ssl  Jun26   1:35 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+root        1892  0.0  0.0 1673376 5372 ?        Sl   Jun26   0:00  \_ /usr/bin/docker-proxy -proto tcp -host-ip :: -host-port 2202 -container-ip 172.26.2.2 -container-port 22 -use-listen-fd
+root         951  0.1  0.3 2094296 58332 ?       Ssl  Jun26   1:31 /usr/bin/containerd
+redis        896  0.1  0.0  65344 13440 ?        Ssl  Jun26   1:28 /usr/bin/redis-server 127.0.0.1:6379
+--- pstree of self ---
+hermes,191981,khuchinque -m hermes_cli.main gateway run
+  |-timeout,192149 5 bash -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 191981 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+  |   `-bash,192150 -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 191981 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+  |       |-head,192155 -40
+  |       `-pstree,192154 -plau 191981
+  |-{hermes},191988
+  |-{hermes},191989
+  |-{hermes},191990
+  |-{hermes},191993
+  |-{hermes},192005
+  |-{hermes},192006
+  `-{hermes},192045
+--- /proc/loadavg ---
+0.31 0.39 0.35 1/496 192156
+--- recent dmesg (oom/killed) ---
+=== end ===
+=== shutdown diagnostic @ SIGTERM ===
+--- date ---
+2026-06-27T17:34:10Z
+--- ps auxf (top 60 by cpu) ---
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           2  0.0  0.0      0     0 ?        S    Jun26   0:00 [kthreadd]
+root          17  0.0  0.0      0     0 ?        I    Jun26   0:17  \_ [rcu_preempt]
+root      182818  0.0  0.0      0     0 ?        I    16:46   0:00  \_ [kworker/u8:1-events_unbound]
+root           1  0.2  0.0  23288 14716 ?        Ss   Jun26   2:21 /sbin/init
+root        1169  0.1  0.9 3206708 160676 ?      Ssl  Jun26   1:37 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+root        1892  0.0  0.0 1673376 5372 ?        Sl   Jun26   0:00  \_ /usr/bin/docker-proxy -proto tcp -host-ip :: -host-port 2202 -container-ip 172.26.2.2 -container-port 22 -use-listen-fd
+root         951  0.1  0.3 2094296 58388 ?       Ssl  Jun26   1:32 /usr/bin/containerd
+redis        896  0.1  0.0  65344 13440 ?        Ssl  Jun26   1:30 /usr/bin/redis-server 127.0.0.1:6379
+--- pstree of self ---
+hermes,192193,khuchinque -m hermes_cli.main gateway run
+  |-timeout,199575 5 bash -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 192193 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+  |   `-bash,199576 -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 192193 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+  |       |-head,199583 -40
+  |       `-pstree,199582 -plau 192193
+  |-{hermes},192200
+  |-{hermes},192201
+  |-{hermes},192202
+  |-{hermes},192205
+  |-{hermes},192208
+  |-{hermes},192209
+  |-{hermes},192210
+  |-{hermes},196543
+  |-{hermes},196544
+  |-{hermes},196546
+  |-{hermes},196626
+  |-{hermes},196666
+  |-{hermes},196707
+  |-{hermes},197051
+  `-{hermes},197078
+--- /proc/loadavg ---
+0.19 0.20 0.20 2/485 199584
+--- recent dmesg (oom/killed) ---
+=== end ===
+=== shutdown diagnostic @ SIGTERM ===
+--- date ---
+2026-06-27T20:03:40Z
+--- ps auxf (top 60 by cpu) ---
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           2  0.0  0.0      0     0 ?        S    Jun26   0:00 [kthreadd]
+root      249737  0.5  0.0      0     0 ?        I    20:03   0:00  \_ [kworker/u8:0-events_unbound]
+root           1  0.2  0.0  23544 14752 ?        Ss   Jun26   2:42 /sbin/init
+root        1169  0.1  0.9 3206708 160256 ?      Ssl  Jun26   1:51 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+root        1892  0.0  0.0 1673376 5372 ?        Sl   Jun26   0:00  \_ /usr/bin/docker-proxy -proto tcp -host-ip :: -host-port 2202 -container-ip 172.26.2.2 -container-port 22 -use-listen-fd
+root         951  0.1  0.3 2094296 58292 ?       Ssl  Jun26   1:44 /usr/bin/containerd
+redis        896  0.1  0.0  65344 13440 ?        Ssl  Jun26   1:42 /usr/bin/redis-server 127.0.0.1:6379
+--- pstree of self ---
+hermes,245330,khuchinque -m hermes_cli.main gateway run
+  |-timeout,249818 5 bash -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 245330 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+  |   `-bash,249820 -c echo '=== shutdown diagnostic @ SIGTERM ==='; echo '--- date ---'; date -u +%Y-%m-%dT%H:%M:%SZ; echo '--- ps auxf (top 60 by cpu) ---'; ps auxf --sort=-pcpu 2>/dev/null | head -60; echo '--- pstree of self ---'; pstree -plau 245330 2>/dev/null | head -40 || true; echo '--- /proc/loadavg ---'; cat /proc/loadavg 2>/dev/null || true; echo '--- recent dmesg (oom/killed) ---'; dmesg -T 2>/dev/null | tail -20 || journalctl --user -n 20 --no-pager 2>/dev/null | tail -20 || true; echo '=== end ==='
+  |       |-head,249827 -40
+  |       `-pstree,249826 -plau 245330
+  |-{hermes},245351
+  |-{hermes},245352
+  |-{hermes},245354
+  |-{hermes},245357
+  |-{hermes},245403
+  |-{hermes},245404
+  |-{hermes},245430
+  |-{hermes},245840
+  |-{hermes},246852
+  |-{hermes},246855
+  |-{hermes},246887
+  |-{hermes},246904
+  `-{hermes},246914
+--- /proc/loadavg ---
+0.64 0.30 0.22 4/470 249831
+--- recent dmesg (oom/killed) ---
+=== end ===
