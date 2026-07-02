@@ -1,0 +1,1 @@
+User enforces strict scope boundaries — when told "write this one file only," do NOT modify, create, or implement any other file. Testing is fine, implementation outside the requested scope is not.

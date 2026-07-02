@@ -1,0 +1,47 @@
+khuchinque@srv1735270:~$ bash hermes-check.sh
+
+== Chinque alignment check ==  2026-07-02 13:08
+
+Session
+  ✓ running as khuchinque
+  ✓ XDG_RUNTIME_DIR ok (/run/user/1000)
+
+Gateway
+  ✓ user service active
+  ✓ running from your install (/home/khuchinque/.hermes)
+  ✓ no root-owned gateway running
+  ✓ hardening drop-in present (Restart=always)
+
+Port 8642
+  ✓ listening on 8642
+  ✓ ufw allows 8642/tcp
+
+Identity & pipeline files
+  ✓ SOUL.md present
+  ✓ SOUL.md names vandaidr as owner
+  ✓ owner-vs-self fence present
+  ✓ AGENTS.md present
+  ✓ pipeline content intact
+
+Config
+  ⚠ terminal.cwd not /home/khuchinque/hermes-pipeline (AGENTS.md won't load)
+  ⚠ honcho not active in dump
+
+Curator
+  ⚠ curator not reporting ENABLED
+  ✓ curator cron present
+
+Watchdog
+  ✓ gateway-guard.timer active
+  ✓ watchdog script present
+
+Secrets & access
+  ✓ .env perms 600
+  ✓ open-access flag off
+  ✓ Telegram allowlist set
+
+== Summary ==
+  pass:19  warn:3  fail:0
+  Mostly fine — review the ⚠ lines.
+
+khuchinque@srv1735270:~$

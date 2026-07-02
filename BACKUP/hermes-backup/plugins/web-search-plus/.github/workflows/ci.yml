@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.8', '3.11']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          pip install pytest ruff
+      - name: Ruff
+        run: ruff check .
+      - name: Tests
+        run: python -m pytest tests/ -q
+      - name: Compile
+        run: >-
+          python -m py_compile
+          search.py
+          __init__.py
+          daemon_tasks.py
+          http_client.py
+          cache.py
+          config.py
+          env_loader.py
+          provider_health.py
+          provider_stats.py
+          quality.py
+          research.py
+          routing.py
+          providers.py
+          extract.py
+          scripts/golden_eval.py

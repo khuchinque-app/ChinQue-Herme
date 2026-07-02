@@ -1,0 +1,57 @@
+
+┌─────────────────────────────────────────────────────────┐
+│              ⚕ Hermes Configuration                    │
+└─────────────────────────────────────────────────────────┘
+
+◆ Paths
+  Config:       /home/khuchinque/.hermes/config.yaml
+  Secrets:      /home/khuchinque/.hermes/.env
+  Install:      /usr/local/lib/hermes-agent
+
+◆ API Keys
+  OpenRouter     sk-o...045b
+  OpenAI (STT/TTS) (not set)
+  Exa            (not set)
+  Parallel       (not set)
+  Firecrawl      (not set)
+  Tavily         (not set)
+  Browserbase    (not set)
+  Browser Use    (not set)
+  FAL            (not set)
+  Anthropic      (not set)
+
+◆ Model
+  Model:        {'provider': 'nous', 'default': 'deepseek/deepseek-v4-flash'}
+  Max turns:    150
+
+◆ Display
+  Personality:  none
+  Reasoning:    off
+  Bell:         off
+  User preview: first 2 line(s), last 2 line(s)
+
+◆ Terminal
+  Backend:      local
+  Working dir:  /home/khuchinque/hermes-pipeline
+  Timeout:      180s
+
+◆ Timezone
+  Timezone:     (server-local)
+
+◆ Context Compression
+  Enabled:      yes
+  Threshold:    50%
+  Target ratio: 20% of threshold preserved
+  Protect last: 20 messages
+  Protect first: 3 non-system head messages
+  Model:        (auto)
+
+◆ Messaging Platforms
+  Telegram:     configured
+  Discord:      not configured
+
+────────────────────────────────────────────────────────────
+  hermes config edit     # Edit config file
+  hermes config set <key> <value>
+  hermes setup           # Run setup wizard
+

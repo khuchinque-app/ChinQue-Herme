@@ -1,0 +1,74 @@
+model:
+  provider: nous
+  default: deepseek/deepseek-v4-flash
+agent:
+  max_turns: 150
+  disabled_toolsets:
+    - clarify
+    - computer_use
+    - cronjob
+    - discord
+    - discord_admin
+    - feishu_doc
+    - feishu_drive
+    - homeassistant
+    - image_gen
+    - kanban
+    - memory
+    - moa
+    - session_search
+    - spotify
+    - todo
+    - tts
+    - video
+    - video_gen
+    - x_search
+    - yuanbao
+terminal:
+  cwd: /home/khuchinque/hermes-pipeline
+web:
+  backend: firecrawl
+  use_gateway: true
+browser:
+  cloud_provider: browser-use
+  use_gateway: true
+display:
+  tool_progress: all
+tts:
+  provider: openai
+  use_gateway: true
+stt:
+  provider: openai
+  use_gateway: true
+memory:
+  provider: ''
+  persist: true
+gateway:
+  multiplex_profiles: false
+onboarding:
+  seen:
+    busy_input_prompt: true
+    tool_progress_prompt: true
+_config_version: 32
+session_reset:
+  mode: none
+image_gen:
+  use_gateway: true
+video_gen:
+  provider: fal
+  use_gateway: true
+plugins:
+  enabled: '["eagle-eye"]'
+platform_toolsets:
+  cli:
+    - browser
+    - code_execution
+    - delegation
+    - file
+    - skills
+    - terminal
+    - vision
+    - web
+known_plugin_toolsets:
+  cli:
+    - spotify

@@ -1,0 +1,23 @@
+{
+  "providers": {
+    "ollama": {
+      "baseUrl": "http://localhost:11434/v1",
+      "api": "openai-completions",
+      "apiKey": "ollama",
+      "compat": {
+        "supportsDeveloperRole": false,
+        "supportsReasoningEffort": false
+      },
+      "models": [
+        {
+          "id": "ornith:9b",
+          "name": "Ornith 9B",
+          "contextWindow": 262144,
+          "maxTokens": 32768,
+          "reasoning": true,
+          "input": ["text"]
+        }
+      ]
+    }
+  }
+}

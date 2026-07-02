@@ -1,0 +1,36 @@
+model:
+  provider: nous
+  base_url: https://inference-api.nousresearch.com/v1
+  default: deepseek/deepseek-v4-flash
+agent:
+  max_turns: 150
+terminal:
+  cwd: /home/khuchinque/hermes-pipeline
+web:
+  backend: firecrawl
+  use_gateway: true
+browser:
+  cloud_provider: browser-use
+  use_gateway: true
+display:
+  tool_progress: all
+tts:
+  provider: openai
+  use_gateway: true
+stt:
+  provider: openai
+  use_gateway: true
+_config_version: 32
+session_reset:
+  mode: none
+image_gen:
+  use_gateway: true
+video_gen:
+  provider: fal
+  use_gateway: true
+onboarding:
+  seen:
+    busy_input_prompt: true
+    tool_progress_prompt: true
+memory:
+  provider: honcho
